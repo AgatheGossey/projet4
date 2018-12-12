@@ -1,7 +1,7 @@
 <?php
-    if (isset($_POST['mot_de_passe']) AND $_POST['mot_de_passe'] ==  "kangourou") 
+    if (isset($_POST['mot_de_passe']) AND $_POST['mot_de_passe'] ==  "motdepasse") 
     {
-        header('Location: ../views/administration.php');
+        header('Location: ../views/admin.php');
     }
     else 
     {

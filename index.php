@@ -1,1 +1,7 @@
-<?php include("./models/databaseConnexion.php"); ?>
+<?php 
+
+include("./models/databaseConnexion.php"); 
+include("./models/articlesModels.php"); 
+include("./controllers/articlesController.php"); 
+
+
