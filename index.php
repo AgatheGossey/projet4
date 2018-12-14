@@ -27,12 +27,34 @@ try {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
+        elseif ($_GET['action'] === 'viewComment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                viewComment();
+            }
+            else {
+                throw new Exception ("Le commentaire n'a pas été trouvé");
+            }
+        }
+        elseif ($_GET['action'] === 'editComment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                if (!empty($_POST['comment'])) {
+                    editComment($_GET['id'], $_POST['comment']);
+                }
+                else {
+                    throw new Exception('Tous les champs ne sont pas remplis !');
+                }
+            }
+            else {
+                throw new Exception('Aucun identifiant de billet envoyé');
+            }
+        }
     }
     else {
         listPosts();
     }
 }
-catch(Exception $e) { // S'il y a eu une erreur, alors...
-    $errorMessage = $e->getMessage();
-    require('view/errorView.php');
+catch(Exception $e) { 
+    die('Erreur : '.$e->getMessage());
+    // $errorMessage = $e->getMessage();
+    // require('view/errorView.php');
 }
