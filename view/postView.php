@@ -26,9 +26,8 @@
 </form>
 
 <?php
-while ($comment = $comments->fetch())
+foreach ($comments as $comment)
 {
-    // print_r($comment);
 ?>
     <p><strong><?= htmlspecialchars($comment['author']) ?></p>
     <p><?= nl2br(htmlspecialchars($comment['comment'])) ?> (<a href= "index.php?action=viewComment&amp;id=<?= $comment['id'] ?>">modifier</a>)</p>

@@ -1,7 +1,7 @@
 <?php $title = "Message d'erreur"; ?>
 
-<?php ob_start(); ?>
-<h1>Message d'erreur : </h1>
-<?php $content = ob_get_clean(); ?>
+<?php ob_start() ?>
+<p>Une erreur est survenue : <?= $msgError ?></p>
+<?php $contenu = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require ('template.php'); ?>

@@ -7,6 +7,6 @@
     </head>
         
     <body>
-        <?= $content ?>
+        <?= $contenu ?>
     </body>
 </html>

@@ -8,7 +8,7 @@ class PostManager extends Manager
         $db = $this->dbConnect();
         $req = $db->query('SELECT id, title, content FROM articles');
     
-        return $req;
+        return $req->fetchAll();
     }
 
     public function getPost($postId)

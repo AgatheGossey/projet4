@@ -5,7 +5,7 @@
     <p>Derniers articles du blog :</p>
             
 <?php
-while ($data = $posts->fetch())
+foreach ($posts as $data)
 {
 ?>
     <div class="news">
@@ -18,7 +18,7 @@ while ($data = $posts->fetch())
     </div>
 <?php
 } 
-$posts->closeCursor();
+
 ?>
 <?php $content = ob_get_clean(); ?>
 

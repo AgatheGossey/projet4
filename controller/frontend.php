@@ -2,12 +2,12 @@
 
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
+require_once('model/ConnectionManager.php');
 
 function listPosts()
 {
     $postManager = new PostManager();
     $posts = $postManager->getPosts();
-
     require('./view/listPostsView.php');
 }
 
@@ -41,7 +41,7 @@ function viewComment()
     $commentManager = new CommentManager();
     $comment = $commentManager->getComment($_GET['id']);
 
-    require('./view/editView.php');
+    require('./view/editCommentView.php');
 }
 
 function editComment($id, $comment)
@@ -49,5 +49,21 @@ function editComment($id, $comment)
     $commentManager = new CommentManager();
     $newComment = $commentManager->updateComment($id, $comment);
     header('Location: index.php?');
+
+}
+
+function logProcess()
+{
+    $connectionManager = new ConnectionManager();
+    $username = stripcslashes($_POST['user']);
+    $password = stripcslashes($_POST['pass']);
+
+    $connection = $connectionManager->getConnection($username, $password);
+
+    if ($connection['username'] === $username && $connection['password'] === $password) {
+        echo "Connexion réussie !";
+    } elseif ($connection === false) {
+        throw new Exception('Impossible de se connecter.');
+    }
 
 }

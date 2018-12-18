@@ -48,13 +48,17 @@ try {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
+
+        elseif ($_GET['action'] === 'logProcess') {
+            logProcess();
+        }
     }
     else {
         listPosts();
     }
 }
-catch(Exception $e) { 
-    die('Erreur : '.$e->getMessage());
-    // $errorMessage = $e->getMessage();
-    // require('view/errorView.php');
+
+catch (Exception $e) {
+    $msgError = $e->getMessage();
+    require('view/errorView.php');
 }

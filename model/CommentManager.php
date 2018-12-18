@@ -27,6 +27,7 @@ class CommentManager extends Manager
         $req = $db->prepare('SELECT id, author, comment FROM comments WHERE id = ?');
         $req->execute(array($id));
         $comment = $req->fetch();
+
         return $comment;
     }
 
@@ -34,8 +35,10 @@ class CommentManager extends Manager
     {
         $db = $this->dbConnect();
         $req = $db->prepare('UPDATE comments SET comment = ? WHERE id = ?');
+        
         $newComment = $req->execute(array($comment, $id));
 
         return $newComment;
     }
 }
+
