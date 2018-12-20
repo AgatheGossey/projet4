@@ -7,9 +7,9 @@ private $file;
 // Titre de la vue (défini dans le fichier vue)
 private $title;
 
-public function __construct($action) {
+public function __construct($action, $controller = "") {
   // Détermination du nom du fichier vue à partir de l'action
-  $this->file = $action . "View.php";
+  $this->file = './view/' . $action . "View.php";
 }
 
 // Génère et affiche la vue

@@ -1,8 +1,7 @@
 <?php $title = "Message d'erreur"; ?>
 
-<?php ob_start() ?>
 
-<form action="../index.php?action=logProcess" method="POST">
+<form action="../index.php?action=logIn" method="POST">
     <p>
         <label>Pseudo:</label>
         <input type="text" id="user" name="user" />
@@ -20,6 +19,3 @@
 
 
 
-<?php $contenu = ob_get_clean(); ?>
-
-<?php require ('template.php'); ?>

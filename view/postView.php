@@ -1,9 +1,7 @@
-<?php $title = 'Les commentaires'; ?>
+<?php $this->title = 'Les commentaires'; ?>
 
-<?php ob_start(); ?>
 
 <p><a href="index.php">Retour à la liste des billets</a></p>
-
 <div class="news">
     <h3><?= htmlspecialchars($post['title']) ?></h3>
     <p><?= nl2br(htmlspecialchars($post['content'])) ?></p>
@@ -33,8 +31,7 @@ foreach ($comments as $comment)
     <p><?= nl2br(htmlspecialchars($comment['comment'])) ?> (<a href= "index.php?action=viewComment&amp;id=<?= $comment['id'] ?>">modifier</a>)</p>
 <?php
 }
-        ?>
 
-<?php $content = ob_get_clean(); ?>
+?>
 
-<?php require('template.php'); ?>
+

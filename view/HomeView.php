@@ -1,6 +1,5 @@
-<?php $title = 'Mon blog'; ?>
+<?php $this->title = 'Mon blog'; ?>
 
-<?php ob_start(); ?>
     <h1>Billet pour l'Alaska</h1>
     <p>Derniers articles du blog :</p>
             
@@ -20,6 +19,3 @@ foreach ($posts as $data)
 } 
 
 ?>
-<?php $content = ob_get_clean(); ?>
-
-<?php require('template.php'); ?>

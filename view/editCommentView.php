@@ -1,6 +1,4 @@
-<?php $title = 'Modifier un commentaire'; ?>
-
-<?php ob_start(); ?>
+<?php $this->title = 'Modifier un commentaire'; ?>
 
 <p><a href="index.php">Retour à la liste des billets</a></p>
 
@@ -18,6 +16,3 @@
  </form>
   
   
- <?php $content = ob_get_clean(); ?>
-  
- <?php require('template.php'); ?>

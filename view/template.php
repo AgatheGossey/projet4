@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
+    <title><?= $title ?></title>
         <meta charset="utf-8" />
-        <title><?= $title ?></title>
-        <link href="style.css" rel="stylesheet" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="public/css/style.css" rel="stylesheet" /> 
+
     </head>
         
     <body>
-        <?= $contenu ?>
+  
+        <?= $content ?>
     </body>
 </html>

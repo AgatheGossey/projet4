@@ -5,7 +5,7 @@ class CommentManager extends Manager
 {
     public function getComments($postId)
     {
-        $db = $this->dbConnect();
+        $db = $this->getDb();
         $comments = $db->prepare('SELECT id, author, comment FROM comments WHERE post_id = ? ORDER BY ID DESC LIMIT 0, 10 ');
         $comments->execute(array($postId));
     
@@ -14,7 +14,7 @@ class CommentManager extends Manager
 
     public function postComment($postId, $author, $comment)
     {
-        $db = $this->dbConnect();
+        $db = $this->getDb();
         $comments = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES (?, ?, ?, NOW())');
         $affectedLines = $comments->execute(array($postId, $author, $comment));
     
@@ -23,7 +23,7 @@ class CommentManager extends Manager
 
     public function getComment($id)
     {
-        $db = $this->dbConnect();
+        $db = $this->getDb();
         $req = $db->prepare('SELECT id, author, comment FROM comments WHERE id = ?');
         $req->execute(array($id));
         $comment = $req->fetch();
@@ -33,7 +33,7 @@ class CommentManager extends Manager
 
     public function updateComment($id, $comment)
     {
-        $db = $this->dbConnect();
+        $db = $this->getDB();
         $req = $db->prepare('UPDATE comments SET comment = ? WHERE id = ?');
         
         $newComment = $req->execute(array($comment, $id));
