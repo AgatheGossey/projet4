@@ -13,13 +13,6 @@ class CommentController extends Controller {
         $this->commentManager = new CommentManager();
     }
 
-    // ANCIEN GETCOMMENT
-    public function index() {
-        $comment = $this->commentManager->getComment($_GET['id']);
-        $view = new View('EditComment');
-        $view->generate(array('comment' => $comment));
-    }
-
     public function addComment() {
         $postId = $this->request->getParameter('id');
         $author = $this->request->getParameter('author');
@@ -34,6 +27,14 @@ class CommentController extends Controller {
             header('Location: index.php?action=post&id=' . $postId);
         }
     }
+
+    // ANCIEN VIEWCOMMENT
+    public function index() {
+        $comment = $this->commentManager->getComment($_GET['id']);
+        $view = new View('EditComment');
+        $view->generate(array('comment' => $comment));
+    }
+
 
     public function editComment() {
         $id = $this->request->getParameter('id');

@@ -21,10 +21,10 @@ class Router {
     }
 
     private function createController(Request $request) {
-        $controller = "Post";
+        $controller = "Post"; // contrôleur par défaut 
         if ($request->existParameter('controller')) {
             $controller = $request->getParameter('controller');
-            $controller = ucfirst (strtolower($controller));
+            $controller = ucfirst (strtolower($controller)); // première lettre en majuscule 
         }
 
         $classController = $controller . "Controller";
@@ -40,7 +40,7 @@ class Router {
     }
 
     private function createAction(Request $request) {
-        $action = "index";
+        $action = "index"; // action par défaut 
         if ($request->existParameter('action')) {
             $action = $request->getParameter('action');
         } 

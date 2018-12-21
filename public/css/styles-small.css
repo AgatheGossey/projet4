@@ -31,4 +31,7 @@ article {
   margin: 1.5em;
   text-align: justify;
 }
- 
+
+input, textarea{
+  color: black;
+}
