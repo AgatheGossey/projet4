@@ -1,9 +1,10 @@
 <?php
 
+require_once('Framework/Controller.php');
 require_once('model/Manager.php');
 require_once('view/View.php');
 
-class ConnectionController {
+class ConnectionController extends Controller {
 
     public function __construct() {
         $this->connectionController = new ConnectionController();

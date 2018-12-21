@@ -1,5 +1,5 @@
 <?php
-require_once("model/Manager.php");
+require_once("../Framework/Manager.php");
 
 class ConnectionManager extends Manager
 

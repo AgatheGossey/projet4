@@ -1,23 +1,22 @@
 <?php
-require_once("model/Manager.php");
+require_once("Framework/Manager.php");
 
 class PostManager extends Manager
 {
     public function getPosts()
     {
-        $db = $this->getDb();
-        $req = $db->query('SELECT id, title, content FROM articles');
+        $posts = $this->executeARequest('SELECT id, title, content FROM articles');
     
-        return $req->fetchAll();
+        return $posts;
     }
 
     public function getPost($postId)
     {
-        $db = $this->getDb();
-        $req = $db->prepare('SELECT id, title, content FROM articles WHERE id = ?');
-        $req->execute(array($postId));
-        $post = $req->fetch();
+        $post = $this->executeARequest('SELECT id, title, content FROM articles WHERE id = ?', array($postId));
     
-        return $post;
+        if ($post->rowCount() == 1)
+            return $post->fetch();  // Accès à la première ligne de résultat
+        else
+            throw new Exception("Aucun billet ne correspond à l'identifiant '$postId'");
     }
 }
