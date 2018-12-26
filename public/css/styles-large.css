@@ -1,0 +1,17 @@
+@media all and (min-width: 992px) {
+
+    .navbar {
+        margin: 0;
+    }
+
+    #jeanForteroche {
+        font-size: 1.8em;
+        padding-left: 70%;
+    }
+    #img {
+        margin-left: 2em;
+        padding: 0;
+    }
+
+
+}

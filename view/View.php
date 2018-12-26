@@ -18,7 +18,7 @@ public function generate($data) {
   $content = $this->generateFile($this->file, $data);
   // Génération du gabarit commun utilisant la partie spécifique
   $view = $this->generateFile('view/template.php',
-    array('title' => $this->title, 'content' => $content));
+    array('title' => $this->title, 'content' => $content)); 
   // Renvoi de la vue au navigateur
   echo $view;
 }

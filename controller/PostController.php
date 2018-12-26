@@ -1,10 +1,11 @@
 <?php
 
+require_once('Framework/Controller.php');
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 require_once('view/View.php');
 
-class PostController {
+class PostController extends Controller {
 
     private $postManager;
     private $commentManager;
@@ -14,7 +15,7 @@ class PostController {
         $this->commentManager = new CommentManager();
     }
 
-    public function listPosts() {
+    public function index() {
         $posts = $this->postManager->getPosts();
         $view = new View('Home');
         $view->generate(array('posts' => $posts));

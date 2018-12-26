@@ -1,31 +1,24 @@
 <?php
-require_once("model/Manager.php");
+require_once("Framework/Manager.php");
 
 class CommentManager extends Manager
 {
     public function getComments($postId)
     {
-        $db = $this->getDb();
-        $comments = $db->prepare('SELECT id, author, comment FROM comments WHERE post_id = ? ORDER BY ID DESC LIMIT 0, 10 ');
-        $comments->execute(array($postId));
-    
+        $comments = $this->executeARequest('SELECT id, author, comment FROM comments WHERE post_id = ? ORDER BY ID DESC LIMIT 0, 10', array($postId));    
         return $comments;
     }
 
     public function postComment($postId, $author, $comment)
     {
-        $db = $this->getDb();
-        $comments = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES (?, ?, ?, NOW())');
-        $affectedLines = $comments->execute(array($postId, $author, $comment));
-    
-        return $affectedLines;
+        $comments = $this->executeARequest('INSERT INTO comments(post_id, author, comment, comment_date) VALUES (?, ?, ?, NOW())', array($postId, $author, $comment));
+   
+        return $comments;
     }
 
     public function getComment($id)
     {
-        $db = $this->getDb();
-        $req = $db->prepare('SELECT id, author, comment FROM comments WHERE id = ?');
-        $req->execute(array($id));
+        $req = $this->executeARequest('SELECT id, author, comment FROM comments WHERE id = ?', array($id));
         $comment = $req->fetch();
 
         return $comment;
@@ -33,11 +26,8 @@ class CommentManager extends Manager
 
     public function updateComment($id, $comment)
     {
-        $db = $this->getDB();
-        $req = $db->prepare('UPDATE comments SET comment = ? WHERE id = ?');
+        $newComment = $this->executeARequest('UPDATE comments SET comment = ? WHERE id = ?', array($comment, $id));
         
-        $newComment = $req->execute(array($comment, $id));
-
         return $newComment;
     }
 }

@@ -1,20 +1,28 @@
 <?php $this->title = 'Mon blog'; ?>
 
-    <h1>Billet pour l'Alaska</h1>
-    <p>Derniers articles du blog :</p>
-            
+     <section>
+      <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5"><img id="img" src="./public/images/img.jpg" alt="Photo de la couverture"/></div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+
 <?php
 foreach ($posts as $data)
 {
 ?>
-    <div class="news">
-        <h3><?= htmlspecialchars($data['title']); ?></h3>
+
+
+          <article id="chapitre1">
+            <h1> <?= htmlspecialchars($data['title']); ?> </h1>
+            <p><?= nl2br(htmlspecialchars($data['content']));?>
+              <br />
+              <em><a href="index.php?action=post&id=<?php echo $data['id'] ?>">Commentaires</a></em>;</p>
+          </article>
+
         
-        <p><?= nl2br(htmlspecialchars($data['content']));?>
-            <br />
-            <em><a href="index.php?action=post&id=<?php echo $data['id'] ?>">Commentaires</a></em>;
-        </p>
-    </div>
+
+   
+
 <?php
 } 
 

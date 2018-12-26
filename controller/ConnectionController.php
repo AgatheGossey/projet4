@@ -1,27 +1,32 @@
 <?php
 
-require_once('model/Manager.php');
+require_once('Framework/Controller.php');
+require_once('model/UserManager.php');
 require_once('view/View.php');
 
-class ConnectionController {
+class ConnectionController extends Controller {
 
     public function __construct() {
-        $this->connectionController = new ConnectionController();
+        $this->userManager = new UserManager();
+    }
+
+    public function index() {
+        $view = new View('Login');
+        $view->generate(array());
     }
 
     public function logIn() {
-        $username = htmlspecialchars($_POST['user']);
-        $password = htmlspecialchars($_POST['pass']);
+        $username = $this->request->getParameter('user');
+        $password = $this->request->getParameter('pass');
 
-        $connection = $this->connectionManager->getConnection($username, $password);
+        $user = $this->userManager->getUserWithPassword($username, $password);
 
-        if ($connection['username'] === $username && $connection['password'] === $password) {
-            echo "Connexion réussie !";
-        } elseif ($connection === false) {
-            throw new Exception('Impossible de se connecter.');
+        if ($user) {
+            header('Location: index.php');
+        } else {
+            $view = new View('Login');
+            $view->generate(array('error' => 'Mauvais nom d\'utilisateur/Mot de passe'));
         }
-        $view = new View('Login');
-        $view->generate(array('connection' => $connection));
     }
 
 }

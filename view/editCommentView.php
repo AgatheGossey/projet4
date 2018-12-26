@@ -4,7 +4,7 @@
 
 <h2>Modifier un commentaire :</h2>
  
- <form action="index.php?action=editComment&amp;id=<?= $comment['id'] ?>" method="post">
+ <form action="index.php?controller=Comment&action=editComment&amp;id=<?= $comment['id'] ?>" method="post">
      <div>
          <p>Auteur : <?= $comment['author'] ?></p>
          <label for="comment">Commentaire</label><br />
