@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -37,7 +36,7 @@
                   <ul class="nav navbar-nav">
                     <li><a href="index.php">Accueil</a></li>
                     <li><a href="#">Chapitres</a></li>
-                    <li><a href="#">Connexion</a></li>
+                    <li><a href="index.php?controller=connection">Connexion</a></li>
                     <li><a href="#">Inscription</a></li>
                   </ul>
                   <p id="jeanForteroche">Jean Forteroche</p>

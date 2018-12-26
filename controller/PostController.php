@@ -15,7 +15,6 @@ class PostController extends Controller {
         $this->commentManager = new CommentManager();
     }
 
-    // ANCIEN LISTPOSTS
     public function index() {
         $posts = $this->postManager->getPosts();
         $view = new View('Home');
