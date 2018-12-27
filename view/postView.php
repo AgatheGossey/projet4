@@ -31,13 +31,12 @@ foreach ($comments as $comment)
     <p><?= nl2br(htmlspecialchars($comment['comment'])) ?> 
         (<a href= "index.php?controller=Comment&amp;id=<?= $comment['id'] ?>">modifier</a>) 
         (<a href= "index.php?controller=Comment&action=deleteComment&amp;id=<?= $comment['id'] ?>">supprimer</a>) </p>
-        (<a href= "index.php?controller=Post&amp;action=editPost&amp;id=<?= $post['id'] ?>">modifier article</a>) 
-        (<a href= "index.php?controller=Post&amp;action=deletePost&amp;id=<?= $post['id'] ?>">supprimer l'article</a>) 
+  
 
     </p>
 
 
-    <a href="index.php?controller=post&action=createPost">Créer un nouvel article</a></li>
+    
 <?php
 }
 

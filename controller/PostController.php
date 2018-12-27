@@ -30,6 +30,34 @@ class PostController extends Controller {
         $view->generate(array('post' => $post, 'comments' => $comments));
     }
 
+    public function postsAdmin() {
+        $posts = $this->postManager->getPosts();
+    
+        $view = new view('Postsadmin');
+        $view->generate(array('posts' => $posts));
+    }
+
+    public function commentsAdmin() {
+        $posts = $this->postManager->getPosts();
+    
+        $view = new view('Commentsadmin');
+        $view->generate(array('posts' => $posts));
+    }
+
+    public function commentAdmin() {
+        $post = $this->postManager->getPost($_GET['id']);
+        $comments = $this->commentManager->getComments($_GET['id']);
+
+        $view = new View('Commentadmin');
+        $view->generate(array('post' => $post, 'comments' => $comments));
+    }
+
+    public function postAdmin() {
+        $post = $this->postManager->getPost($_GET['id']);
+        $view = new View('Postadmin');
+        $view->generate(array('post' => $post));
+    }
+
     public function createPost() {
         if ($this->request->existParameter('title') && $this->request->existParameter('content')) {
             $title = $this->request->getParameter('title');

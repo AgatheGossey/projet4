@@ -23,7 +23,7 @@ class PostManager extends Manager
     public function createPost($title, $content)
     {
         $post = $this->executeARequest('INSERT INTO articles(title, content) VALUES(?, ?)', array($title, $content));
-        var_dump($post);
+        
         return $post;
     }
 
