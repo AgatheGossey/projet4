@@ -19,4 +19,25 @@ class PostManager extends Manager
         else
             throw new Exception("Aucun billet ne correspond à l'identifiant '$postId'");
     }
+
+    public function createPost($title, $content)
+    {
+        $post = $this->executeARequest('INSERT INTO articles(title, content) VALUES(?, ?)', array($title, $content));
+        var_dump($post);
+        return $post;
+    }
+
+    public function updatePost($id, $title, $content)
+    {
+        $newPost = $this->executeARequest('UPDATE articles SET title = ?, content = ? WHERE id = ?', array($title, $content, $id));
+        
+        return $newPost;
+    }
+
+    public function deletePost($id) 
+    {
+        $delete = $this->executeARequest('DELETE FROM articles WHERE id = ?', array($id));
+
+        return $delete;
+    }
 }

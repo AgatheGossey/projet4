@@ -30,5 +30,12 @@ class CommentManager extends Manager
         
         return $newComment;
     }
+
+    public function deleteComment($id) 
+    {
+        $delete = $this->executeARequest('DELETE FROM comments WHERE id = ?', array($id));
+
+        return $delete;
+    }
 }
 
