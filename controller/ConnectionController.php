@@ -22,11 +22,13 @@ class ConnectionController extends Controller {
         $user = $this->userManager->getUserWithPassword($username, $password);
 
         if ($user) {
+            $_SESSION['connected'] = true;
+            $_SESSION['username'] = $username;
             header('Location: index.php');
-        } else {
-            $view = new View('Login');
-            $view->generate(array('error' => 'Mauvais nom d\'utilisateur/Mot de passe'));
-        }
+            } else {
+                $view = new View('Login');
+                $view->generate(array('error' => 'Mauvais nom d\'utilisateur/Mot de passe'));
+            }
     }
 
 }

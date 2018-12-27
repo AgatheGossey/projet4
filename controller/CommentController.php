@@ -34,7 +34,6 @@ class CommentController extends Controller {
         $view->generate(array('comment' => $comment));
     }
 
-
     public function editComment() {
         $id = $this->request->getParameter('id');
         $comment = $this->request->getParameter('comment');

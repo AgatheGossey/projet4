@@ -1,4 +1,4 @@
-<?php $title = "Se connecter"; ?>
+<?php $this->title = "Se connecter"; ?>
 
 
 <form action="index.php?controller=connection&action=logIn" method="POST">

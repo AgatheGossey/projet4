@@ -23,7 +23,10 @@ class InscriptionController extends Controller {
         $passCheck = $this->request->getParameter('passCheck');
         $email = $this->request->getParameter('email');
 
-        if (isset($password) && isset($passCheck) && $password != $passCheck )
+        if ($this->userManager->usernameIsUnfree($username)) {
+            echo "Ce pseudo est déjà pris";
+        }
+        else if (isset($password) && isset($passCheck) && $password != $passCheck )
         {
             echo "Les mots de passe ne sont pas identiques";
         }
@@ -37,6 +40,9 @@ class InscriptionController extends Controller {
         else {
             $pass_hache = password_hash($password, PASSWORD_DEFAULT);
             $user = $this->userManager->addUser($username, $pass_hache, $email);
+            $_SESSION['username'] = $username;
+            $_SESSION['password'] = $pass_hache;
+            $_SESSION['connected'] = true;
             $view = new View('Inscription');
             $view->generate(array('successfulRegistration' => 'Inscription réussie !'));
         }

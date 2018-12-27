@@ -36,6 +36,25 @@
                   <ul class="nav navbar-nav">
                     <li><a href="index.php">Accueil</a></li>
                     <li><a href="#">Chapitres</a></li>
+                    <?php 
+                    if(isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
+                    ?>
+                      <li>Bienvenue <?= $_SESSION['username'] ?></li>
+                      <li><a href="index.php?controller=signOut">Se déconnecter</a></li>
+                      <?php
+                      if(isset($_SESSION['username']) && $isAdmin) {
+                      ?>
+                        <li><a href="index.php?controller=post&action=postsAdmin">Gérer les articles</a></li>                        
+                        <li><a href="index.php?controller=post&action=commentsAdmin">Modérer les commentaires</a></li>
+
+                        <!-- <li><a href="index.php?controller=post&action=createPost">Nouvel article</a></li> -->
+                        <!-- <li><a href= "index.php?controller=Post&amp;action=editPost&amp;id=<?= $post['id'] ?>">modifier article</a></li>
+                        <li><a href= "index.php?controller=Post&amp;action=deletePost&amp;id=<?= $post['id'] ?>">supprimer l'article</a></li> -->
+                      <?php } ?>
+
+                    <?php } ?>
+                  
+
                     <li><a href="index.php?controller=connection">Connexion</a></li>
                     <li><a href="index.php?controller=inscription">Inscription</a></li>
                   </ul>
