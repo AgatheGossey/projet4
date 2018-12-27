@@ -28,7 +28,6 @@ class CommentController extends Controller {
         }
     }
 
-    // ANCIEN VIEWCOMMENT
     public function index() {
         $comment = $this->commentManager->getComment($_GET['id']);
         $view = new View('EditComment');
@@ -40,6 +39,12 @@ class CommentController extends Controller {
         $id = $this->request->getParameter('id');
         $comment = $this->request->getParameter('comment');
         $newComment = $this->commentManager->updateComment($id, $comment);
+        header('Location: index.php?');
+    }
+
+    public function deleteComment() {
+        $id = $this->request->getParameter('id');
+        $delete = $this->commentManager->deleteComment($id);
         header('Location: index.php?');
     }
 

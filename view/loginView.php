@@ -1,4 +1,4 @@
-<?php $title = "Message d'erreur"; ?>
+<?php $title = "Se connecter"; ?>
 
 
 <form action="index.php?controller=connection&action=logIn" method="POST">

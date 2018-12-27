@@ -37,7 +37,7 @@
                     <li><a href="index.php">Accueil</a></li>
                     <li><a href="#">Chapitres</a></li>
                     <li><a href="index.php?controller=connection">Connexion</a></li>
-                    <li><a href="#">Inscription</a></li>
+                    <li><a href="index.php?controller=inscription">Inscription</a></li>
                   </ul>
                   <p id="jeanForteroche">Jean Forteroche</p>
                 </div>
