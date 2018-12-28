@@ -37,21 +37,6 @@ class PostController extends Controller {
         $view->generate(array('posts' => $posts));
     }
 
-    public function commentsAdmin() {
-        $posts = $this->postManager->getPosts();
-    
-        $view = new view('Commentsadmin');
-        $view->generate(array('posts' => $posts));
-    }
-
-    public function commentAdmin() {
-        $post = $this->postManager->getPost($_GET['id']);
-        $comments = $this->commentManager->getComments($_GET['id']);
-
-        $view = new View('Commentadmin');
-        $view->generate(array('post' => $post, 'comments' => $comments));
-    }
-
     public function postAdmin() {
         $post = $this->postManager->getPost($_GET['id']);
         $view = new View('Postadmin');
@@ -62,9 +47,7 @@ class PostController extends Controller {
         if ($this->request->existParameter('title') && $this->request->existParameter('content')) {
             $title = $this->request->getParameter('title');
             $content = $this->request->getParameter('content');
-
             $this->postManager->createPost($title, $content);
-
             header('Location: index.php');
         } else {
             $view = new View('CreatePost');
@@ -78,13 +61,10 @@ class PostController extends Controller {
         if ($this->request->existParameter('title') && $this->request->existParameter('content')) {
             $title = $this->request->getParameter('title');
             $content = $this->request->getParameter('content');
-
-            $this->postManager->updatePost($postId, $title, $content);
-
+            $this->postManager->editPost($postId, $title, $content);
             header('Location: index.php');
         } else {
             $post = $this->postManager->getPost($postId);
-
             $view = new View('EditPost');
             $view->generate(array('id' => $post['id'], 'title' => $post['title'], 'content' => $post['content']));
         }

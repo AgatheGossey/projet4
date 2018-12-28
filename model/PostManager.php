@@ -27,7 +27,7 @@ class PostManager extends Manager
         return $post;
     }
 
-    public function updatePost($id, $title, $content)
+    public function editPost($id, $title, $content)
     {
         $newPost = $this->executeARequest('UPDATE articles SET title = ?, content = ? WHERE id = ?', array($title, $content, $id));
         

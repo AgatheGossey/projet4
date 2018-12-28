@@ -9,10 +9,8 @@ class Router {
     public function requestRouter() {
         try {
             $request = new Request(array_merge($_GET, $_POST));
-
             $controller = $this->createController($request);
             $action = $this->createAction($request);
-
             $controller->executeAction($action);
         }
         catch (Exception $e) {
@@ -21,10 +19,10 @@ class Router {
     }
 
     private function createController(Request $request) {
-        $controller = "Post"; // contrôleur par défaut 
+        $controller = "Post"; 
         if ($request->existParameter('controller')) {
             $controller = $request->getParameter('controller');
-            $controller = ucfirst (strtolower($controller)); // première lettre en majuscule 
+            $controller = ucfirst (strtolower($controller)); 
         }
 
         $classController = $controller . "Controller";

@@ -44,7 +44,7 @@
                 if(isset($_SESSION['username']) && $isAdmin) {
                 ?>
                   <li><a href="index.php?controller=post&action=postsAdmin">Gérer les articles</a></li>                        
-                  <li><a href="index.php?controller=post&action=commentsAdmin">Modérer les commentaires</a></li>
+                  <li><a href="index.php?controller=comment&action=commentsAdmin">Modérer les commentaires</a></li>
                 <?php 
                 }
               } else {

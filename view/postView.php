@@ -30,7 +30,7 @@ foreach ($comments as $comment)
     <p><strong><?= htmlspecialchars($comment['author']) ?></p>
     <p><?= nl2br(htmlspecialchars($comment['comment'])) ?> 
         (<a href= "index.php?controller=Comment&amp;id=<?= $comment['id'] ?>">modifier</a>) 
-        (<a href= "index.php?controller=Comment&action=deleteComment&amp;id=<?= $comment['id'] ?>">supprimer</a>) </p>
+        (<a href= "index.php?controller=Comment&amp;action=deleteComment&amp;id=<?= $comment['id'] ?>">supprimer</a>) </p>
   
         <?php if (isset($deleteComment)) { ?>
         <p><?= $deleteComment ?></p>
