@@ -93,7 +93,7 @@ class PostController extends Controller {
     public function deletePost() {
         $id = $this->request->getParameter('id');
         $delete = $this->postManager->deletePost($id);
-        header('Location : index.php');
+        header('Location: index.php');
     }
 
 }

@@ -23,9 +23,9 @@ class UserManager extends Manager
         return $user;
     }
 
-    public function getUserWithPassword($username, $password)
+    public function getUser($username)
     {
-        $user = $this->executeARequest('SELECT * FROM users WHERE username = ? and pass = ?', array($username, $password));
+        $user = $this->executeARequest('SELECT * FROM users WHERE username = ?', array($username));
 
         return $user->fetch();
     }
@@ -35,7 +35,6 @@ class UserManager extends Manager
         $req = $this->executeARequest('SELECT username, groups FROM users WHERE username = ?', array($username));
         $user = $req->fetch();
 
-        print_r($user['groups'] === 'admin');
         return $user['groups'] === 'admin';
     }
 }

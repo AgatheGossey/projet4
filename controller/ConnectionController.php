@@ -6,6 +6,8 @@ require_once('view/View.php');
 
 class ConnectionController extends Controller {
 
+    private $userManager;
+
     public function __construct() {
         $this->userManager = new UserManager();
     }
@@ -19,9 +21,9 @@ class ConnectionController extends Controller {
         $username = $this->request->getParameter('user');
         $password = $this->request->getParameter('pass');
 
-        $user = $this->userManager->getUserWithPassword($username, $password);
+        $user = $this->userManager->getUser($username);
 
-        if ($user) {
+        if ($user && password_verify($password, $user['pass'])) {
             $_SESSION['connected'] = true;
             $_SESSION['username'] = $username;
             header('Location: index.php');

@@ -17,7 +17,12 @@ public function __construct($action) {
 
 // Génère et affiche la vue
 public function generate($data) {
-  $isAdmin = $this->userManager->adminConnection($_SESSION['username']);
+  if (isset($_SESSION['username'])) {
+    $isAdmin = $this->userManager->adminConnection($_SESSION['username']);
+  } else {
+    $isAdmin = false;
+  }
+  
   // Génération de la partie spécifique de la vue
   $content = $this->generateFile($this->file, $data);
   // Génération du gabarit commun utilisant la partie spécifique

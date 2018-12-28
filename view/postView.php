@@ -7,7 +7,7 @@
     <p><?= nl2br(htmlspecialchars($post['content'])) ?></p>
 </div>
 
-<h2>Commentaires</h2>
+<h2>Laissez un commentaire :</h2>
 
 <form action="index.php?controller=Comment&action=addComment&amp;id=<?= $post['id'] ?>" method="POST">
     <div>
@@ -32,7 +32,9 @@ foreach ($comments as $comment)
         (<a href= "index.php?controller=Comment&amp;id=<?= $comment['id'] ?>">modifier</a>) 
         (<a href= "index.php?controller=Comment&action=deleteComment&amp;id=<?= $comment['id'] ?>">supprimer</a>) </p>
   
-
+        <?php if (isset($deleteComment)) { ?>
+        <p><?= $deleteComment ?></p>
+    <?php } ?>
     </p>
 
 
