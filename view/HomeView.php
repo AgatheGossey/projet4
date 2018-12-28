@@ -1,13 +1,13 @@
 <?php $this->title = 'Mon blog'; ?>
 
 <?php
-foreach ($posts as $data)
+foreach ($posts as $post)
 {
 ?>
-            <h1> <?= htmlspecialchars($data['title']); ?> </h1>
-            <p><?= nl2br(htmlspecialchars($data['content']));?>
+            <h1> <?= $post->getTitle(); ?> </h1>
+            <p><?= $post->getContent();?>
             <br/>
-            <em><a href="index.php?action=post&id=<?php echo $data['id'] ?>">Commentaires</a></em>;</p>
+            <em><a href="index.php?action=post&id=<?= $post->getId() ?>">Commentaires</a></em>;</p>
 
 <?php
 } 

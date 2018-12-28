@@ -1,12 +1,16 @@
 <?php
 require_once("Framework/Manager.php");
-
+require_once("model/entities/Post.php");
 class PostManager extends Manager
 {
     public function getPosts()
     {
-        $posts = $this->executeARequest('SELECT id, title, content FROM articles');
-    
+        $results = $this->executeARequest('SELECT id, title, content FROM articles');
+        $posts = [];
+        foreach ($results as $element){
+            $post = new Post($element);
+            $posts[] = $post;
+        }
         return $posts;
     }
 
