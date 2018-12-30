@@ -23,7 +23,7 @@ class ConnectionController extends Controller {
 
         $user = $this->userManager->getUser($username);
 
-        if ($user && password_verify($password, $user['pass'])) {
+        if ($user && password_verify($password, $user->getPass())) {
             $_SESSION['connected'] = true;
             $_SESSION['username'] = $username;
             header('Location: index.php');

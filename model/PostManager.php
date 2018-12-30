@@ -1,23 +1,33 @@
 <?php
 require_once("Framework/Manager.php");
-
+require_once("model/entities/Post.php");
 class PostManager extends Manager
 {
     public function getPosts()
     {
-        $posts = $this->executeARequest('SELECT id, title, content FROM articles');
-    
+        $results = $this->executeARequest('SELECT id, title, content FROM articles');
+        $posts = [];
+        foreach ($results as $element){
+            $post = new Post($element);
+            $posts[] = $post;
+        }
         return $posts;
     }
 
     public function getPost($postId)
     {
-        $post = $this->executeARequest('SELECT id, title, content FROM articles WHERE id = ?', array($postId));
-    
-        if ($post->rowCount() == 1)
-            return $post->fetch();  // Accès à la première ligne de résultat
+        $request = $this->executeARequest('SELECT id, title, content FROM articles WHERE id = ?', array($postId));
+        $result = $request->fetch();
+
+        if ($result)
+        {
+            $post = new Post($result);
+            return $post;
+        }
         else
+        {
             throw new Exception("Aucun billet ne correspond à l'identifiant '$postId'");
+        }
     }
 
     public function createPost($title, $content)

@@ -3,14 +3,14 @@
 <a href="index.php?controller=post&action=createPost">Créer un nouvel article</a> 
 
 <?php
-foreach ($posts as $data)
+foreach ($posts as $post)
 {
 ?>
-            <h1> <?= htmlspecialchars($data['title']); ?> </h1>
-            <p><?= nl2br(htmlspecialchars($data['content']));?>
+            <h1> <?= $post->getTitle(); ?> </h1>
+            <p><?= $post->getContent(); ?>
             <br/>
             
-            <a href= "index.php?controller=post&amp;action=postAdmin&id=<?php echo $data['id'] ?>">Modérer l'article</a>
+            <a href= "index.php?controller=post&amp;action=postAdmin&id=<?php echo $post->getId() ?>">Modérer l'article</a>
 <?php
 } 
 

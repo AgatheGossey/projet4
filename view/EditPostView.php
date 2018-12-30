@@ -8,7 +8,7 @@
         <label for="title">Titre :</label>
         <input type="text" name="title" value="<?= $title ?>"></input>
 
-        <label for="content">Article</label><br />
+        <label for="content">Article</label>
         <textarea name="content" cold="50" rows="30" id="content"><?= $content ?></textarea>
 
      </div>

@@ -17,8 +17,14 @@ class PostController extends Controller {
 
     public function index() {
         $posts = $this->postManager->getPosts();
-
         $view = new View('Home');
+        $view->generate(array('posts' => $posts));
+    }
+
+    public function posts() {
+        $posts = $this->postManager->getPosts();
+
+        $view = new View('Posts');
         $view->generate(array('posts' => $posts));
     }
 
@@ -48,7 +54,7 @@ class PostController extends Controller {
             $title = $this->request->getParameter('title');
             $content = $this->request->getParameter('content');
             $this->postManager->createPost($title, $content);
-            header('Location: index.php');
+            header('Location: index.php?controller=post&action=postsAdmin');
         } else {
             $view = new View('CreatePost');
             $view->generate(array());
@@ -62,18 +68,18 @@ class PostController extends Controller {
             $title = $this->request->getParameter('title');
             $content = $this->request->getParameter('content');
             $this->postManager->editPost($postId, $title, $content);
-            header('Location: index.php');
+            header('Location: index.php?controller=post&action=postsAdmin');
         } else {
             $post = $this->postManager->getPost($postId);
             $view = new View('EditPost');
-            $view->generate(array('id' => $post['id'], 'title' => $post['title'], 'content' => $post['content']));
+            $view->generate(array('id' => $post->getId(), 'title' => $post->getTitle(), 'content' => $post->getContent()));
         }
     }
 
     public function deletePost() {
         $id = $this->request->getParameter('id');
         $delete = $this->postManager->deletePost($id);
-        header('Location: index.php');
+        header('Location: index.php?controller=post&action=postsAdmin');
     }
 
 }

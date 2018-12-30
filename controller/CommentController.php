@@ -21,7 +21,7 @@ class CommentController extends Controller {
 
     public function addComment() {
         $postId = $this->request->getParameter('id');
-        $author = $this->request->getParameter('author');
+        $author = $_SESSION['username'];
         $comment = $this->request->getParameter('comment');
 
         $affectedLines = $this->commentManager->postComment($postId, $author, $comment);
@@ -30,7 +30,8 @@ class CommentController extends Controller {
         {
             throw new Exception('Impossible d\'ajouter le commentaire !');
         }
-        else {
+        else
+        {
             header('Location: index.php?action=post&id=' . $postId);
         }
     }
@@ -53,37 +54,39 @@ class CommentController extends Controller {
     public function index() {
         $commentId = $this->request->getParameter('id');
         $comment = $this->commentManager->getComment($commentId);
-        $view = new View('EditComment');
-        $view->generate(array('comment' => $comment));
-    }
-
-    public function editComment() {
-        $commentId = $this->request->getParameter('id');
-        $oldcomment = $this->request->getParameter('comment');
-        $comment = $this->commentManager->getComment($commentId);
-
-        if (isset($_SESSION['connected']) && $_SESSION['connected'] == true && $_SESSION['username'] === $comment['author']) 
+        $postId = $comment->getPostId();
+        if (isset($_SESSION['connected']) && $_SESSION['connected'] && $_SESSION['username'] === $comment->getAuthor())
         {
-            $newComment = $this->commentManager->updateComment($commentId, $oldcomment);
-            header('Location: index.php?');
-        } else {
+            if ($this->request->existParameter('comment')) 
+            {
+                $newComment = $this->commentManager->updateComment($commentId, $this->request->getParameter('comment'));
+                header('Location: index.php?action=post&id=' . $postId);      
+            } else
+            {
+                $comment = $this->commentManager->getComment($commentId);
+                $view = new View('EditComment');
+                $view->generate(array('comment' => $comment));
+            }    
+        } else 
+        {
             throw new Exception('Impossible de modifier ce commentaire');
         }
+
     }
 
     public function deleteComment() {
         $commentId = $this->request->getParameter('id');
         $comment = $this->commentManager->getComment($commentId);
-
-        if (isset($_SESSION['connected']) && $_SESSION['connected'] == true && $_SESSION['username'] === $comment['author'] 
+        $postId = $comment->getPostId();
+        
+        if (isset($_SESSION['connected']) && $_SESSION['connected'] == true && $_SESSION['username'] === $comment->getAuthor()
             OR isset($_SESSION['username']) && $this->userManager->adminConnection($_SESSION['username']))
+        {          
+            $this->commentManager->deleteComment($commentId);  
+            header('Location: index.php?action=post&id=' . $postId);      
+        } 
+        else
         {
-            // $view = new View('Post');
-            // $view->generate(array('deleteComment' => 'coucou'));        
-            $id = $this->request->getParameter('id');
-            $delete = $this->commentManager->deleteComment($id);
-            header('Location: index.php?');
-        } else {
             throw new Exception('Impossible de supprimer ce commentaire');
         }
     }

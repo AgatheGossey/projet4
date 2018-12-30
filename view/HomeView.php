@@ -1,15 +1,25 @@
-<?php $this->title = 'Mon blog'; ?>
+<?php $this->title = 'Bienvenue !'; ?>
 
 <?php
-foreach ($posts as $data)
-{
-?>
-            <h1> <?= htmlspecialchars($data['title']); ?> </h1>
-            <p><?= nl2br(htmlspecialchars($data['content']));?>
-            <br/>
-            <em><a href="index.php?action=post&id=<?php echo $data['id'] ?>">Commentaires</a></em>;</p>
+foreach($posts as $key => $post)
+if ($key < 2) {
 
+    ?>
+    <h1> <?= $post->getTitle(); ?> </h1>
+    <p><?= substr($post->getContent(), 0, 250);?>
+    <br/>
+    <em><a href="index.php?action=post&id=<?= $post->getId() ?>">Continuez la lecture</a></em></p>
 <?php
 } 
 
 ?>
+
+
+
+
+
+
+
+
+
+
