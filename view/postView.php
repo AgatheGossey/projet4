@@ -1,16 +1,17 @@
 <?php $this->title = 'Les commentaires'; ?>
 
 
-<p><a href="index.php">Retour à la liste des billets</a></p>
+<p><a href="index.php?action=posts">Retour à la liste des billets</a></p>
 <div class="news">
     <h3><?= $post->getTitle() ?></h3>
     <p><?= $post->getContent() ?></p>
 </div>
 
+<h2>Commentaire :</h2>
+
 <?php 
     if(isset($_SESSION['connected']) && $_SESSION['connected']) {
 ?>
-<h2>Laissez un commentaire :</h2>
 
 <form action="index.php?controller=Comment&action=addComment&amp;id=<?= $post->getId() ?>" method="POST">
     <div>

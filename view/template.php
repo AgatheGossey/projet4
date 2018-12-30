@@ -34,7 +34,7 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li><a href="index.php">Accueil</a></li>
-              <li><a href="#">Chapitres</a></li>
+              <li><a href="index.php?action=posts">Chapitres</a></li>
               <?php 
               if(isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
               ?>
