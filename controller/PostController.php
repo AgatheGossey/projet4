@@ -66,7 +66,7 @@ class PostController extends Controller {
         } else {
             $post = $this->postManager->getPost($postId);
             $view = new View('EditPost');
-            $view->generate(array('id' => $post['id'], 'title' => $post['title'], 'content' => $post['content']));
+            $view->generate(array('id' => $post->getId(), 'title' => $post->getTitle(), 'content' => $post->getContent()));
         }
     }
 

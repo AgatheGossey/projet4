@@ -4,15 +4,13 @@
 
 <h2>Modifier un commentaire :</h2>
  
- <form action="index.php?controller=Comment&action=editComment&amp;id=<?= $comment['id'] ?>" method="post">
+ <form action="index.php?controller=Comment&amp;id=<?= $comment->getId() ?>" method="post">
      <div>
-         <p>Auteur : <?= $comment['author'] ?></p>
-         <label for="comment">Commentaire</label><br />
-         <textarea id="comment" name="comment"><?= $comment['comment'] ?></textarea>
+         <p>Auteur : <?=  $comment->getAuthor() ?></p>
+         <label for="comment">Commentaire</label>
+         <textarea id="comment" name="comment" required><?=  $comment->getComment() ?></textarea>
      </div>
      <div>
          <input type="submit" />
      </div>
  </form>
-  
-  

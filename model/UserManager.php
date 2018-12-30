@@ -1,20 +1,17 @@
 <?php
 require_once("Framework/Manager.php");
+require_once("model/entities/User.php");
 
 class UserManager extends Manager
 
 {
-    public function usernameIsUnfree($username)
+    public function usernameIsFree($username)
     {
         $req = $this->executeARequest('SELECT username FROM users WHERE username = ?', array($username));
 
         $user = $req->fetch();
 
-            if (empty($user)) {
-                return false;
-            } else {
-                return true;
-            }
+        return empty($user); 
     }
 
     public function addUser($username, $password, $email) 
@@ -25,16 +22,21 @@ class UserManager extends Manager
 
     public function getUser($username)
     {
-        $user = $this->executeARequest('SELECT * FROM users WHERE username = ?', array($username));
+        $request = $this->executeARequest('SELECT * FROM users WHERE username = ?', array($username));
+        $result = $request->fetch();
 
-        return $user->fetch();
+        $user = new User($result);
+
+        return $user;
     }
 
     public function adminConnection($username) {
 
-        $req = $this->executeARequest('SELECT username, groups FROM users WHERE username = ?', array($username));
-        $user = $req->fetch();
+        $request = $this->executeARequest('SELECT username, groups FROM users WHERE username = ?', array($username));
+        $result = $request->fetch();
 
-        return $user['groups'] === 'admin';
+        $user = new User($result);
+
+        return $user->getGroups() === 'admin';
     }
 }

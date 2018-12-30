@@ -26,7 +26,7 @@ class InscriptionController extends Controller {
         $passCheck = $this->request->getParameter('passCheck');
         $email = $this->request->getParameter('email');
 
-        if ($this->userManager->usernameIsUnfree($username)) {
+        if (!$this->userManager->usernameIsFree($username)) {
             echo "Ce pseudo est déjà pris";
         }
             else if (isset($password) && isset($passCheck) && $password != $passCheck )

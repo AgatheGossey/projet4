@@ -24,9 +24,8 @@ class Post{
         }
     }
 
-
     /**
-     * @return mixed
+     * @return Number
      */
     public function getId()
     {
@@ -34,7 +33,7 @@ class Post{
     }
 
     /**
-     * @param mixed $id
+     * @param Number $id
      */
     public function setId($id)
     {
@@ -42,7 +41,7 @@ class Post{
     }
 
     /**
-     * @return mixed
+     * @return String
      */
     public function getTitle()
     {
@@ -50,18 +49,15 @@ class Post{
     }
 
     /**
-     * @param mixed $title
+     * @param String $title
      */
     public function setTitle($title)
     {
-        if( strlen($title) > 10){
-            $this->title = htmlspecialchars($title);
-        }
-
+        $this->title = htmlspecialchars($title);
     }
 
     /**
-     * @return mixed
+     * @return String
      */
     public function getContent()
     {
@@ -69,12 +65,10 @@ class Post{
     }
 
     /**
-     * @param mixed $content
+     * @param String $content
      */
     public function setContent($content)
     {
         $this->content = htmlspecialchars($content);
     }
-
-
 }

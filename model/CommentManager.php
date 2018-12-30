@@ -1,11 +1,18 @@
 <?php
 require_once("Framework/Manager.php");
+require_once("model/entities/Comment.php");
 
 class CommentManager extends Manager
 {
     public function getComments($postId)
     {
-        $comments = $this->executeARequest('SELECT id, author, comment FROM comments WHERE post_id = ? ORDER BY ID DESC LIMIT 0, 10', array($postId));    
+        $results = $this->executeARequest('SELECT * FROM comments WHERE post_id = ? ORDER BY ID DESC LIMIT 0, 10', array($postId));
+        $comments = [];
+
+        foreach ($results as $element){
+            $comment = new Comment($element);
+            $comments[] = $comment;
+        }
         return $comments;
     }
 
@@ -18,8 +25,10 @@ class CommentManager extends Manager
 
     public function getComment($id)
     {
-        $req = $this->executeARequest('SELECT id, author, comment FROM comments WHERE id = ?', array($id));
-        $comment = $req->fetch();
+        $request = $this->executeARequest('SELECT * FROM comments WHERE id = ?', array($id));
+        $result = $request->fetch();
+
+        $comment = new Comment($result);
 
         return $comment;
     }
