@@ -13,6 +13,7 @@ foreach ($comments as $comment)
 ?>
     <p><strong><?= $comment->getAuthor() ?></p>
     <p><?= $comment->getComment() ?> 
+    <p>Nombre de signalement : <?= $comment->getReport() ?> </p>
         (<a href= "index.php?controller=Comment&action=deleteComment&amp;id=<?= $comment->getId() ?>">supprimer</a>) </p>
     </p>
     

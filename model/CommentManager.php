@@ -4,6 +4,19 @@ require_once("model/entities/Comment.php");
 
 class CommentManager extends Manager
 {
+    public function getAllComments()
+    {
+        $results = $this->executeARequest('SELECT * FROM comments ORDER BY id DESC LIMIT 0,15', array());
+        $comments = [];
+
+        foreach ($results as $element){
+            $comment = new Comment($element);
+            $comments[] = $comment;
+        }
+        return $comments;
+        return $comments;
+    }
+
     public function getComments($postId)
     {
         $results = $this->executeARequest('SELECT * FROM comments WHERE post_id = ? ORDER BY ID DESC LIMIT 0, 10', array($postId));
@@ -45,6 +58,17 @@ class CommentManager extends Manager
         $delete = $this->executeARequest('DELETE FROM comments WHERE id = ?', array($id));
 
         return $delete;
+    }
+
+    public function reportComment($id) 
+    {
+        $comment = $this->getComment($id);
+
+        $report = $comment->getReport();
+
+        $report++;
+
+        return $this->executeARequest('UPDATE comments SET report = ? WHERE id = ?', array($report, $id));
     }
 }
 

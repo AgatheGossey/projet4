@@ -26,28 +26,34 @@ class InscriptionController extends Controller {
         $passCheck = $this->request->getParameter('passCheck');
         $email = $this->request->getParameter('email');
 
-        if (!$this->userManager->usernameIsFree($username)) {
-            echo "Ce pseudo est déjà pris";
+        $temporaryUser = new User(array("username" => $username, "pass" => $password, "email" => $email));
+
+        if (!$this->userManager->usernameIsFree($username))
+        {
+            $_SESSION['errors']['usernameError'] = "Username error";
+        } else {
+            $_SESSION['errors']['usernameError'] = "";
         }
-            else if (isset($password) && isset($passCheck) && $password != $passCheck )
-            {
-                echo "Les mots de passe ne sont pas identiques";
-            }
-            else if (strlen($password) < 6) {
-                echo "Le mot de passe doit comporter au minimum 6 caractères.";
-            }
-            else if (isset($email) && !preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $email))
-            {	
-                echo "L'adresse . $email . n'est pas valide, recommencez !";
-            }
-            else {
-                $pass_hash = password_hash($password, PASSWORD_DEFAULT);
-                $user = $this->userManager->addUser($username, $pass_hash, $email);
-                $_SESSION['username'] = $username;
-                $_SESSION['password'] = $pass_hash;
-                $_SESSION['connected'] = true;
-                $view = new View('Inscription');
-                $view->generate(array('successfulRegistration' => 'Inscription réussie !'));
-            }
+        
+        if (isset($password) && isset($passCheck) && $password !== $passCheck )
+        {
+            $_SESSION['errors']['passCheckError'] = "Les mots de passe ne sont pas identiques";
+        } else {
+            $_SESSION['errors']['passCheckError'] = "";
+        }
+
+        if (empty($_SESSION['errors']))
+        {
+            $pass_hash = password_hash($password, PASSWORD_DEFAULT);
+            $user = $this->userManager->addUser($username, $pass_hash, $email);
+            $_SESSION['username'] = $username;
+            $_SESSION['connected'] = true;
+            $_SESSION['errors'] = [];
+            header('Location: index.php');
+        } else
+        {
+            $view = new View("Inscription");
+            $view->generate(array());
+        }
     }
 }

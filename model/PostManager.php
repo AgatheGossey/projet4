@@ -1,17 +1,26 @@
 <?php
 require_once("Framework/Manager.php");
 require_once("model/entities/Post.php");
+
 class PostManager extends Manager
 {
-    public function getPosts()
+    public function getPosts($start = 0, $articlesPerPage = 2)
     {
-        $results = $this->executeARequest('SELECT id, title, content FROM articles');
+        $results = $this->executeARequest('SELECT id, title, content FROM articles LIMIT ' .$articlesPerPage. ' OFFSET ' .$start);
+
         $posts = [];
         foreach ($results as $element){
             $post = new Post($element);
             $posts[] = $post;
         }
         return $posts;
+    }
+
+    public function totalPosts()
+    {
+        $request = $this->executeARequest('SELECT COUNT(*) FROM articles');
+        $result = $request->fetch();
+        return $result[0];
     }
 
     public function getPost($postId)
@@ -50,4 +59,10 @@ class PostManager extends Manager
 
         return $delete;
     }
+
+    public function paginationPost()
+    {
+        $totalArticles =  $this->executeARequest('SELECT id FROM articles', array())->rowCount();
+    }
+
 }

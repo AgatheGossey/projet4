@@ -1,13 +1,15 @@
 <?php $this->title = "Modérer les commentaires"; ?>
 
 <?php
-foreach ($posts as $post)
+foreach ($comments as $comment)
 {
 ?>
-    <h1> <?= $post->getTitle() ?> </h1>
-    <p><?= nl2br($post->getContent())?>
-    <br/>
-    <em><a href="index.php?controller=comment&amp;action=commentAdmin&id=<?php echo $post->getId() ?>">Commentaires</a></em>;</p>
+    <p><?= $comment->getPostId() ?></p>
+    <p><?= $comment->getAuthor() ?></p>
+    <p><?= nl2br($comment->getComment()) ?></p>
+    <p>Nombre de signalement : </p>
+    (<a href= "index.php?controller=Comment&action=deleteComment&amp;id=<?= $comment->getId() ?>">supprimer</a>) </p>
+
 <?php
 } 
 

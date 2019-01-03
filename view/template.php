@@ -8,8 +8,8 @@
 
         <!-- FONT -->
         <link href="https://fonts.googleapis.com/css?family=Karma" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet">
-
+        <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet">   
+        <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
 
         <!-- STYLES -->
         <link href="./public/css/bootstrap.min.css" rel="stylesheet">
@@ -33,20 +33,30 @@
       
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li><a href="index.php">Accueil</a></li>
-              <li><a href="index.php?action=posts">Chapitres</a></li>
+
               <?php 
               if(isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
               ?>
-                <li>Bienvenue <?= $_SESSION['username'] ?></li>
-                <li><a href="index.php?controller=deconnection">Se déconnecter</a></li>
-                <?php
-                if(isset($_SESSION['username']) && $isAdmin) {
-                ?>
-                  <li><a href="index.php?controller=post&action=postsAdmin">Gérer les articles</a></li>                        
-                  <li><a href="index.php?controller=comment&action=commentsAdmin">Modérer les commentaires</a></li>
+                <li><a href="index.php"><?= 'Bienvenue ' .ucfirst($_SESSION['username']) ?></a></li>
                 <?php 
-                }
+              } ?>
+            
+              <li><a href="index.php">Accueil</a></li>
+              <li><a href="index.php?action=posts">Chapitres</a></li>
+
+              <?php 
+              if(isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
+              ?>
+                <li><a href="index.php?controller=deconnection">Se déconnecter</a></li>
+
+              <?php
+              if(isset($_SESSION['username']) && $isAdmin) {
+              ?>
+                <li><a href="index.php?controller=post&action=postsAdmin">Panneau d'administration</a></li>
+
+              <?php 
+              }
+
               } else {
                 ?> 
               <li><a href="index.php?controller=connection">Connexion</a></li>
@@ -58,8 +68,19 @@
         </div>
       </nav>
       <?= $content ?>
-    </body>
 
+      <footer class="page-footer">
+
+          <a href="#" class="footerElement">Mentions légales</a>
+          <div class="footerElement">© 2018 Copyright</div>
+
+      </footer>
+      
+    </body>
+    
+
+    <!-- <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>  
 </html>

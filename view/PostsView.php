@@ -12,3 +12,10 @@ foreach ($posts as $post)
 } 
 
 ?>
+
+<?php
+for ($i=1; $i<=$pageTotales;$i++)
+{
+    echo '<a href="index.php?action=posts&page=' .$i.'">' .$i.'</a>';
+}
+

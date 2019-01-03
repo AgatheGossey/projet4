@@ -9,4 +9,8 @@
         font-family: 'Major Mono Display', monospace;
         color: white;
       }
+
+      form {
+          max-width: 50%;
+      }
 }

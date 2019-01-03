@@ -1,7 +1,7 @@
 <?php
 
 class Comment {
-    private $id, $postId, $author, $comment, $commentDate ;
+    private $id, $postId, $author, $comment, $commentDate, $report;
 
     public function __construct(array $data)
     {
@@ -101,5 +101,21 @@ class Comment {
     public function setCommentDate($commentDate)
     {
         $this->commentDate = $commentDate;
+    }
+
+    /**
+     * @return Number
+     */
+    public function getReport()
+    {
+        return $this->report;
+    }
+
+    /**
+     * @param Number $report
+     */
+    public function setReport($report)
+    {
+        $this->report = $report;
     }
 }

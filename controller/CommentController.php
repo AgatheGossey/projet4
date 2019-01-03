@@ -37,18 +37,31 @@ class CommentController extends Controller {
     }
 
     public function commentsAdmin() {
-        $posts = $this->postManager->getPosts();
-    
-        $view = new view('Commentsadmin');
-        $view->generate(array('posts' => $posts));
+        if(isset($_SESSION['username']) && $this->userManager->adminConnection($_SESSION['username']))
+        {
+            $comments = $this->commentManager->getAllComments();
+            $view = new view('Commentsadmin');
+            $view->generate(array('comments' => $comments));
+        }
+        else 
+        {
+            header('Location: index.php?');
+        }
     }
 
     public function commentAdmin() {
-        $post = $this->postManager->getPost($_GET['id']);
-        $comments = $this->commentManager->getComments($_GET['id']);
-
-        $view = new View('Commentadmin');
-        $view->generate(array('post' => $post, 'comments' => $comments));
+        if(isset($_SESSION['username']) && $this->userManager->adminConnection($_SESSION['username']))
+        {
+            $postId = $this->request->getParameter('id');   
+            $post = $this->postManager->getPost($postId);
+            $comments = $this->commentManager->getComments($postId);
+            $view = new View('Commentadmin');
+            $view->generate(array('post' => $post, 'comments' => $comments));
+        }
+        else 
+        {
+            header('Location: index.php?');
+        }   
     }
 
     public function index() {
@@ -88,6 +101,20 @@ class CommentController extends Controller {
         else
         {
             throw new Exception('Impossible de supprimer ce commentaire');
+        }
+    }
+
+    public function reportComment() {
+        $commentId = $this->request->getParameter('id');
+        $postId = $this->request->getParameter('id');
+
+        if (isset($_SESSION['connected']) && $_SESSION['connected'] == true)
+        {
+            $this->commentManager->reportComment($commentId);
+            header('Location: index.php?');
+        }
+        else {
+            throw new Exception('Impossible de signaler ce commentaire');
         }
     }
 
