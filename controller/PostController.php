@@ -91,7 +91,7 @@ class PostController extends Controller {
             $this->postManager->createPost($title, $content);
             header('Location: index.php?controller=post&action=postsAdmin');
         } else {
-            $view = new View('CreatePost');
+            $view = new View('CreatePostAdmin');
             $view->generate(array());
         }
     }
@@ -106,7 +106,7 @@ class PostController extends Controller {
             header('Location: index.php?controller=post&action=postsAdmin');
         } else {
             $post = $this->postManager->getPost($postId);
-            $view = new View('EditPost');
+            $view = new View('EditPostAdmin');
             $view->generate(array('id' => $post->getId(), 'title' => $post->getTitle(), 'content' => $post->getContent()));
         }
     }
