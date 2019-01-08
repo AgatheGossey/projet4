@@ -4,34 +4,37 @@ require_once("model/entities/Comment.php");
 
 class CommentManager extends Manager
 {
-    public function getAllComments()
+    public function getCommentsByReport()
     {
-        $results = $this->executeARequest('SELECT * FROM comments ORDER BY id DESC LIMIT 0,15', array());
+        $results = $this->executeARequest('SELECT * FROM comments ORDER BY report DESC', array());
         $comments = [];
 
-        foreach ($results as $element){
+        foreach ($results as $element)
+        {
             $comment = new Comment($element);
             $comments[] = $comment;
         }
-        return $comments;
+
         return $comments;
     }
 
-    public function getComments($postId)
+    public function getCommentsByPost($postId)
     {
         $results = $this->executeARequest('SELECT * FROM comments WHERE post_id = ? ORDER BY ID DESC LIMIT 0, 10', array($postId));
         $comments = [];
 
-        foreach ($results as $element){
+        foreach ($results as $element)
+        {
             $comment = new Comment($element);
             $comments[] = $comment;
         }
+
         return $comments;
     }
 
     public function postComment($postId, $author, $comment)
     {
-        $comments = $this->executeARequest('INSERT INTO comments(post_id, author, comment, comment_date) VALUES (?, ?, ?, NOW())', array($postId, $author, $comment));
+        $comments = $this->executeARequest('INSERT INTO comments(post_id, author, comment, comment_date, approve) VALUES (?, ?, ?, NOW(), "false")', array($postId, $author, $comment));
    
         return $comments;
     }
@@ -60,15 +63,32 @@ class CommentManager extends Manager
         return $delete;
     }
 
+    public function approveComment($id)
+    {
+        // $request = $this->executeARequest('SELECT id, approve FROM comments WHERE id = ?', array($id));
+        // $result = $request->fetch();
+
+        // $comment = new Comment($result);
+
+        // return $comment->getApprove() === 'true';
+
+
+
+        $comment = $this->getComment($id);
+        $approve = $comment->getApprove();
+        $approve === "true";
+
+        return $this->executeARequest('UPDATE comments SET approve = ? WHERE id = ?', array($approve, $id));
+    }
+
     public function reportComment($id) 
     {
         $comment = $this->getComment($id);
-
         $report = $comment->getReport();
-
         $report++;
 
         return $this->executeARequest('UPDATE comments SET report = ? WHERE id = ?', array($report, $id));
     }
+    
 }
 

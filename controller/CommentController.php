@@ -6,20 +6,23 @@ require_once('model/CommentManager.php');
 require_once('model/UserManager.php');
 require_once('view/View.php');
 
-class CommentController extends Controller {
+class CommentController extends Controller 
+{
 
     private $postManager;
     private $commentManager;
     private $userManager;
     
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->postManager = new PostManager();
         $this->commentManager = new CommentManager();
         $this->userManager = new UserManager();
     }
 
-    public function addComment() {
+    public function addComment()
+    {
         $postId = $this->request->getParameter('id');
         $author = $_SESSION['username'];
         $comment = $this->request->getParameter('comment');
@@ -36,27 +39,13 @@ class CommentController extends Controller {
         }
     }
 
-    public function commentsAdmin() {
+    public function commentAdmin()
+    {
         if(isset($_SESSION['username']) && $this->userManager->adminConnection($_SESSION['username']))
         {
-            $comments = $this->commentManager->getAllComments();
-            $view = new view('Commentsadmin');
-            $view->generate(array('comments' => $comments));
-        }
-        else 
-        {
-            header('Location: index.php?');
-        }
-    }
-
-    public function commentAdmin() {
-        if(isset($_SESSION['username']) && $this->userManager->adminConnection($_SESSION['username']))
-        {
-            $postId = $this->request->getParameter('id');   
-            $post = $this->postManager->getPost($postId);
-            $comments = $this->commentManager->getComments($postId);
+            $comments = $this->commentManager->getCommentsByReport();
             $view = new View('Commentadmin');
-            $view->generate(array('post' => $post, 'comments' => $comments));
+            $view->generate(array('comments' => $comments));
         }
         else 
         {
@@ -64,37 +53,47 @@ class CommentController extends Controller {
         }   
     }
 
-    public function index() {
+    public function index()
+    {
         $commentId = $this->request->getParameter('id');
         $comment = $this->commentManager->getComment($commentId);
         $postId = $comment->getPostId();
+
         if (isset($_SESSION['connected']) && $_SESSION['connected'] && $_SESSION['username'] === $comment->getAuthor())
         {
             if ($this->request->existParameter('comment')) 
             {
                 $newComment = $this->commentManager->updateComment($commentId, $this->request->getParameter('comment'));
                 header('Location: index.php?action=post&id=' . $postId);      
-            } else
+            } 
+            else
             {
                 $comment = $this->commentManager->getComment($commentId);
                 $view = new View('EditComment');
                 $view->generate(array('comment' => $comment));
             }    
-        } else 
+        }
+        else 
         {
             throw new Exception('Impossible de modifier ce commentaire');
         }
 
     }
 
-    public function deleteComment() {
+    public function deleteComment() 
+    {
         $commentId = $this->request->getParameter('id');
         $comment = $this->commentManager->getComment($commentId);
-        $postId = $comment->getPostId();
         
-        if (isset($_SESSION['connected']) && $_SESSION['connected'] == true && $_SESSION['username'] === $comment->getAuthor()
-            OR isset($_SESSION['username']) && $this->userManager->adminConnection($_SESSION['username']))
-        {          
+        if (isset($_SESSION['username']) && $this->userManager->adminConnection($_SESSION['username']) && $this->request->existParameter("fromAdminPanel"))
+        {
+            $this->commentManager->deleteComment($commentId);
+            header('Location: index.php?controller=Comment&action=commentAdmin');      
+        }
+        else if (isset($_SESSION['connected']) && $_SESSION['connected'] && $_SESSION['username'] === $comment->getAuthor()
+                OR isset($_SESSION['username']) && $this->userManager->adminConnection($_SESSION['username']))
+        {           
+            $postId = $comment->getPostId();
             $this->commentManager->deleteComment($commentId);  
             header('Location: index.php?action=post&id=' . $postId);      
         } 
@@ -104,7 +103,8 @@ class CommentController extends Controller {
         }
     }
 
-    public function reportComment() {
+    public function reportComment()
+    {
         $commentId = $this->request->getParameter('id');
         $postId = $this->request->getParameter('id');
 
@@ -113,8 +113,24 @@ class CommentController extends Controller {
             $this->commentManager->reportComment($commentId);
             header('Location: index.php?');
         }
-        else {
+        else 
+        {
             throw new Exception('Impossible de signaler ce commentaire');
+        }
+    }
+
+    public function approveComment()
+    {
+        $commentId = $this->request->getParameter('id');
+
+        if (isset($_SESSION['connected']) && $_SESSION['connected'] == true)
+        {
+            $this->commentManager->approveComment($commentId);
+            header('Location : index.php?controller=Comment&action=commentAdmin');
+        }
+        else 
+        {
+            throw new Exception('Impossible d\'approuver ce commentaire');
         }
     }
 

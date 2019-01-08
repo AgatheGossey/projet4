@@ -1,24 +1,26 @@
 <?php $this->title = "Gérer les articles"; ?>
 
-<a href="index.php?controller=post&action=createPost">Créer un nouvel article</a> 
+  <a role="button" class="btn btn-success" href="index.php?controller=post&amp;action=createPost"><i class="far fa-edit"></i></a></button>
 
-<?php
-foreach ($posts as $post)
-{
-?>
-    <h1> <?= $post->getTitle(); ?> </h1>
-    <p><?= $post->getContent(); ?>
-    <br/>
+<?php foreach ($posts as $post) { ?>
+    <article class="col-xs-12 col-sm-8 col-md-4 col-lg-5 article">
+        <h1> <?= $post->getTitle(); ?> </h1>
+        <p><?= $post->getContent(); ?>
+    </article>
     
-    <a href= "index.php?controller=Post&amp;action=editPost&amp;id=<?= $post->getId() ?>">Modifier article</a>
+    <div id="postActions">
+        <a href= "index.php?controller=Post&amp;action=editPost&amp;id=<?= $post->getId() ?>">Modifier</a>
+        <a href= "index.php?controller=Post&amp;action=deletePost&amp;id=<?= $post->getId() ?>">Supprimer</a>
+    </div>
 
-    <a href= "index.php?controller=Post&amp;action=deletePost&amp;id=<?= $post->getId() ?>">supprimer l'article</a>
+<?php } ?>
 
-    <em><a href="index.php?controller=Comment&amp;action=commentAdmin&id=<?= $post->getId() ?>">Modérer les commentaires</a></em>;</p>
-
-<?php
-
-} 
-
-?>
-
+<nav id="paginationNav">
+    <ul class="pagination">
+        <?php for ($i=1; $i<=$pageTotales;$i++) { ?>
+            <li class="page-item <?php if ($currentPage === $i) { echo 'active'; } ?>">
+                <a class="page-link" href="index.php?action=postsAdmin&amp;page=<?= $i ?>"><?= $i ?></a>
+            </li>
+        <?php } ?>
+    </ul>
+</nav>

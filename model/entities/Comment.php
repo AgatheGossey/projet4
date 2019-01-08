@@ -1,7 +1,9 @@
 <?php
 
-class Comment {
-    private $id, $postId, $author, $comment, $commentDate, $report;
+class Comment 
+{
+
+    private $id, $postId, $author, $comment, $commentDate, $report, $approve;
 
     public function __construct(array $data)
     {
@@ -118,4 +120,21 @@ class Comment {
     {
         $this->report = $report;
     }
+
+     /**
+     * @return String
+     */
+    public function getApprove()
+    {
+        return $this->approve;
+    }
+
+    /**
+     * @param String $approve
+     */
+    public function setApprove($approve)
+    {
+        $this->approve = $approve;
+    }
+    
 }

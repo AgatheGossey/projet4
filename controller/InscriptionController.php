@@ -4,7 +4,8 @@ require_once('Framework/Controller.php');
 require_once('model/UserManager.php');
 require_once('view/View.php');
 
-class InscriptionController extends Controller {
+class InscriptionController extends Controller 
+{
 
     private $userManager;
 
@@ -15,12 +16,13 @@ class InscriptionController extends Controller {
 
     public function index() 
     {
+        $_SESSION['errors'] = [];
         $view = new View('Inscription');
         $view->generate(array());
     }
 
     public function register()
-    {
+    {    
         $username = $this->request->getParameter('user');
         $password = $this->request->getParameter('pass');
         $passCheck = $this->request->getParameter('passCheck');
@@ -30,16 +32,12 @@ class InscriptionController extends Controller {
 
         if (!$this->userManager->usernameIsFree($username))
         {
-            $_SESSION['errors']['usernameError'] = "Username error";
-        } else {
-            $_SESSION['errors']['usernameError'] = "";
+            $_SESSION['errors']['usernameError'] = "Pseudo déjà utilisé, veuillez en choisir un autre.";
         }
         
         if (isset($password) && isset($passCheck) && $password !== $passCheck )
         {
-            $_SESSION['errors']['passCheckError'] = "Les mots de passe ne sont pas identiques";
-        } else {
-            $_SESSION['errors']['passCheckError'] = "";
+            $_SESSION['errors']['passCheckError'] = "Les mots de passe ne sont pas identiques.";
         }
 
         if (empty($_SESSION['errors']))
@@ -50,7 +48,8 @@ class InscriptionController extends Controller {
             $_SESSION['connected'] = true;
             $_SESSION['errors'] = [];
             header('Location: index.php');
-        } else
+        } 
+        else
         {
             $view = new View("Inscription");
             $view->generate(array());

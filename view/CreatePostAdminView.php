@@ -1,17 +1,25 @@
 <?php $this->title = 'Créer un nouvel article'; ?>
 
-<form action="index.php?controller=post&action=createPost" method="POST">
+<h3>Créer un nouvel article :</h3>
 
-    <h3>Créer un nouvel article :</h3>
+<form id="formAdminPostView" action="index.php?controller=post&amp;action=createPost" method="POST">
 
-    <label for="title">Titre</label>
-    <input type="text" name="title" id="title">
+    <p class ="form-group">
+        <label for="title">Titre</label>
+        <input type="text" class="form-control" name="title" id="title">
+    </p>
 
-    <textarea name="content" cold="50" rows="30" id="content"></textarea>
+    <p> 
+        <textarea class="post" name="content" cold="50" rows="30" id="content"></textarea>
+    </p>
 
-    <input type="submit" value="Publier"/>
+    <p>
+        <button id="submitPost" type="submit button" class="btn btn-success">Publier</button>
+    </p>
+    
+    <p id="redirectionLink">
+        <a href="index.php?controller=post&amp;action=postsAdmin">Retour au panneau d'administration</a>
+    </p>
 
 </form>
 
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-<script>tinymce.init({ selector:'textarea' });</script>

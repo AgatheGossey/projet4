@@ -1,10 +1,13 @@
 /* TEMPLATE */
 
 body {
-    padding-top: 5em;
-    font-family: 'Karma', serif;
-    background-color: white;
-  }
+  padding-top: 5em;
+  font-family: 'Karma', serif;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
 .navbar {
   background-color: #052611;
@@ -29,15 +32,15 @@ body {
 
 .page-footer {
   width: 100%;
-  position:absolute;
-  bottom: 0;
+  margin-top: auto;
   display: flex;
   flex-direction: row;
   padding: 1em 0;
-  background-color: #052611;
+  background-color: #919191;
   text-align: center;
 
 }
+
 footer, footer > a {
   color: white;
 }
@@ -46,12 +49,7 @@ footer, footer > a {
   width: 50%;
 }
 
-/* HOME VIEW */
-
-#img {
-  width: 100%;
-  margin: auto;
-}
+/* GLOBAL */
 
 article {
   text-align: justify;
@@ -59,20 +57,106 @@ article {
   font-size: 1.2em;
 }
 
-.homeView {
-  background-image: url("fond.jpg");
-  margin-bottom: 2em;
-}
-
-#titleArticleHomeView {
+h1 {
   padding: 0.2em;
   border-bottom: 1px dashed grey;
   text-align: center;
   font-family: 'Dancing Script', cursive;
+  font-weight: bold;
+  margin: 1em auto;
 }
 
+/* HOME VIEW */
 
-/* Inscription View */
+#img {
+  position: relative;
+  width: 100%;
+  margin: auto;
+}
+
+#homeView {
+  background-image: url("fond.jpg");
+}
+
+#homeViewChapters {
+  margin: 3em auto;
+}
+
+/* POSTS VIEW */
+
+.article {
+  margin: 1em auto 3em auto;
+}
+
+#paginationNav {
+  margin: auto;
+}
+
+/* POST VIEW */
+
+#h1PostView {
+  border: none;
+}
+
+#redirectionLink {
+  text-align: right;
+}
+
+#postingComments {
+  border: 1px solid #e2e2e2;
+  padding: 1em 2em;
+}
+
+#getAuthor {
+  font-weight: bold;
+}
+
+#commentActions {
+  left: 10px;
+  top: 5px;
+  text-align: center;
+}
+
+#commentActions > .btn {
+  color: green;
+}
+
+#commentActions > .btn:hover {
+  font-weight: bold;
+}
+
+h3 {
+  margin: 4em auto 2em auto;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+#comment {
+  width: 200%;
+}
+
+#linkToLogIn {
+  margin: 2em auto;
+  padding: 1em;
+  width: 50%;
+  border-radius: 5px 5px;
+  background-color: #29a54e;
+  color: white;
+  text-align: center;
+}
+
+#logIn {
+  text-decoration: underline;
+  color: white;
+}
+
+#logIn:hover {
+  font-weight: bold;
+}
+
+/* INSCRIPTION VIEW */
 
 #h2InscriptionView {
   margin-top: 3em;
@@ -81,16 +165,62 @@ article {
   font-weight: bold;
   letter-spacing: 2px;
 }
-form {
+
+#formInscriptionView, #formConnectionView {
   text-align: center;
   margin: 3em auto;
   max-width: 70%;
   font-size: 1.2em;
 }
 
-.btn-success {
+#submitInscriptionButton {
   margin-top: 0.8em;
   font-weight: bold;
   font-size: 1.2em;
 }
 
+/* POSTS ADMIN VIEW */
+
+.far.fa-edit {
+  font-size: 4em;
+  color: white;
+  width: 10em;
+}
+
+#postActions {
+  padding: 1em;
+  background-color: black;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+#postActions > a {
+  margin: 1em;
+  color: white;
+}
+
+#postActions > a:hover {
+  font-weight: bold;
+}
+
+#formAdminPostView {
+  margin:auto;
+  width: 200%;
+}
+
+#submitPost {
+ margin-top: 1em;
+ font-size: 1.2em;
+ font-weight: bold;
+}
+
+/* COMMENTS ADMIN VIEW */
+
+.table {
+  font-size: 1.2em;
+}
+
+#lineTable:hover {
+  background-color:#285b00;
+  color: white;
+}

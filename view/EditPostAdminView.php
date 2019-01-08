@@ -2,23 +2,22 @@
 
 <h3>Modifier l'article :</h3>
  
- <form action="index.php?controller=post&action=editPost&amp;id=<?= $id ?>" method="post">
+ <form id="formAdminPostView" action="index.php?controller=post&action=editPost&amp;id=<?= $id ?>" method="post">
 
-     <div>
+     <p class ="form-group">
         <label for="title">Titre :</label>
-        <input type="text" name="title" value="<?= $title ?>"></input>
+        <input type="text" class="form-control" name="title" value="<?= $title ?>"></input>
+    </p>
 
+    <p class ="form-group">
         <label for="content">Article</label>
-        <textarea name="content" cold="50" rows="30" id="content"><?= $content ?></textarea>
-
-     </div>
-
-     <div>
-        <input type="submit" value="Publier"/>
-     </div>
+        <textarea class="post" name="content" cold="50" rows="30" id="content"><?= $content ?></textarea>
+    </p>
+    
+    <p>
+        <button id="submitPost" type="submit button" class="btn btn-success">Editer</button>
+    </p>
 
  </form>
   
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-<script>tinymce.init({ selector:'textarea' });</script>
-  
+

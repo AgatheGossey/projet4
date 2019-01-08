@@ -9,10 +9,13 @@ class PostManager extends Manager
         $results = $this->executeARequest('SELECT id, title, content FROM articles LIMIT ' .$articlesPerPage. ' OFFSET ' .$start);
 
         $posts = [];
-        foreach ($results as $element){
+
+        foreach ($results as $element)
+        {
             $post = new Post($element);
             $posts[] = $post;
         }
+        
         return $posts;
     }
 
@@ -20,6 +23,7 @@ class PostManager extends Manager
     {
         $request = $this->executeARequest('SELECT COUNT(*) FROM articles');
         $result = $request->fetch();
+
         return $result[0];
     }
 
@@ -31,6 +35,7 @@ class PostManager extends Manager
         if ($result)
         {
             $post = new Post($result);
+            
             return $post;
         }
         else
@@ -55,9 +60,8 @@ class PostManager extends Manager
 
     public function deletePost($id) 
     {
-        $delete = $this->executeARequest('DELETE FROM articles WHERE id = ?', array($id));
-
-        return $delete;
+        $this->executeARequest('DELETE FROM articles WHERE id = ?', array($id));
+        $this->executeARequest('DELETE FROM comments WHERE post_id = ?', array($id));
     }
 
     public function paginationPost()

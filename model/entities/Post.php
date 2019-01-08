@@ -1,6 +1,8 @@
 <?php
 
-class Post{
+class Post
+{
+
     private $id, $title, $content ;
 
     public function __construct(array $data)
@@ -69,6 +71,7 @@ class Post{
      */
     public function setContent($content)
     {
-        $this->content = htmlspecialchars($content);
+        $this->content = $content;
     }
+    
 }

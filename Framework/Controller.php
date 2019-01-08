@@ -3,21 +3,26 @@
 require_once('Request.php');
 require_once('view/View.php');
 
-abstract class Controller {
+abstract class Controller
+{
     
     private $action; 
     protected $request;
 
-    public function setRequest(Request $request) {
+    public function setRequest(Request $request)
+    {
         $this->request = $request;
     }
 
-    public function executeAction($action) {
-        if (method_exists($this, $action)) {
+    public function executeAction($action)
+    {
+        if (method_exists($this, $action))
+        {
             $this->action = $action;
             $this->{$this->action} ();
         }
-        else {
+        else
+        {
             $classController = get_class($this);
             throw new Exception ("Action '$action' non définie dans la classe $classController");
         }
@@ -25,9 +30,11 @@ abstract class Controller {
 
     public abstract function index();
 
-    protected function generateView($dataView = array()) {
+    protected function generateView($dataView = array())
+    {
         $classController = get_class($this);
         $controller = str_replace("Controller", "", $classController);
+        
         $view = new View($this->action, $controller);
         $view->generate($dataView);
     }

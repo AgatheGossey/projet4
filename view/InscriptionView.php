@@ -3,12 +3,10 @@
 <h2 id="h2InscriptionView">Inscrivez-vous afin d'interagir avec les lecteurs et Jean Fortroche !</h2>
 
 <div class="container-fluid">
-
     <div class="container">
-
         <div class="row">
 
-            <form action="index.php?controller=inscription&action=register" method="POST">
+            <form id="formInscriptionView" action="index.php?controller=inscription&action=register" method="POST">
 
                 <p class ="form-group">
                     <label>Pseudo :</label>
@@ -30,26 +28,23 @@
                     <input type="text" class="form-control" id="email" name="email" required />
                 </p>
 
-                <?php
-                
-                    if (isset($_SESSION['errors'])) 
-                    {
-                        foreach ($_SESSION['errors'] as $error)
-                    {
-                ?>
-                    <p> <?= $error ?> </p>
-                <?php
-                    }
-                }
-                
-                ?>
+                <?php if (isset($_SESSION['errors'])) {
 
-                <p>
+                        foreach ($_SESSION['errors'] as $error)
+                        { ?>
+                            <p> <?= $error ?> </p>
+                        <?php }
+
+                    } ?>
+
+                <p div="submitInscriptionButton">
                     <button type="submit button" class="btn btn-success">S'inscrire</button>
                 </p>
 
                 <?php if (isset($successfulRegistration)) { ?>
+
                     <p><?= $successfulRegistration ?></p>
+                    
                 <?php } ?>
 
             </form>
