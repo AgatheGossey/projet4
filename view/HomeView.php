@@ -9,11 +9,13 @@
             <div class="row">
             
                 <?php foreach($posts as $key => $post)
-                if ($key < 2) { ?>
+                // display only the first two article
+                if ($key < 2) { ?> 
                     <article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <h1> <?= $post->getTitle(); ?> </h1>
                         <p>
-                            <?= substr($post->getContent(), 0, 350) . " ...";?>
+                            <!-- display only the first 350 characters of the article -->
+                            <?= substr($post->getContent(), 0, 350) . " ...";?> 
                             <br/>
                             <a href="index.php?action=post&amp;id=<?= $post->getId() ?>">Poursuivre la lecture</a>
                         </p>

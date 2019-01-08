@@ -14,6 +14,7 @@ class ConnectionController extends Controller
         $this->userManager = new UserManager();
     }
 
+    // Default function 
     public function index() 
     {
         $view = new View('Login');

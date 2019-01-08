@@ -53,6 +53,7 @@ class CommentController extends Controller
         }   
     }
 
+    // Default function 
     public function index()
     {
         $commentId = $this->request->getParameter('id');
@@ -77,7 +78,6 @@ class CommentController extends Controller
         {
             throw new Exception('Impossible de modifier ce commentaire');
         }
-
     }
 
     public function deleteComment() 
@@ -88,14 +88,14 @@ class CommentController extends Controller
         if (isset($_SESSION['username']) && $this->userManager->adminConnection($_SESSION['username']) && $this->request->existParameter("fromAdminPanel"))
         {
             $this->commentManager->deleteComment($commentId);
-            header('Location: index.php?controller=Comment&action=commentAdmin');      
+            header('Location: index.php?controller=Comment&amp;action=commentAdmin');      
         }
         else if (isset($_SESSION['connected']) && $_SESSION['connected'] && $_SESSION['username'] === $comment->getAuthor()
                 OR isset($_SESSION['username']) && $this->userManager->adminConnection($_SESSION['username']))
         {           
             $postId = $comment->getPostId();
             $this->commentManager->deleteComment($commentId);  
-            header('Location: index.php?action=post&id=' . $postId);      
+            header('Location: index.php?action=post&amp;id=' . $postId);      
         } 
         else
         {

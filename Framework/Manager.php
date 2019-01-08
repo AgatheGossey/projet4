@@ -4,15 +4,16 @@ abstract class Manager {
 
     private $db;
 
+    // Execute a SQL query
     protected function executeARequest($sql, $params = null) 
     {
         if ($params == null)
         {
-            $result = $this->getDb()->query($sql);
+            $result = $this->getDb()->query($sql); // direct execution
         }
         else
         {
-            $result = $this->getDb()->prepare($sql);
+            $result = $this->getDb()->prepare($sql); // prepared query
             $result->execute($params);
         }
         return $result;

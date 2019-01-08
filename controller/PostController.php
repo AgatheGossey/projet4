@@ -6,7 +6,8 @@ require_once('model/CommentManager.php');
 require_once('model/UserManager.php');
 require_once('view/View.php');
 
-class PostController extends Controller {
+class PostController extends Controller
+{
 
     private $postManager;
     private $commentManager;
@@ -26,16 +27,19 @@ class PostController extends Controller {
         $view->generate(array('posts' => $posts));
     }
 
+    // FRONT OFFICE
+
     public function posts()
     {
+        // Data needed for pagination
         $articlesPerPage = 3;
         $totalPosts = $this->postManager->totalPosts();
-        $pagesTotales = ceil($totalPosts/$articlesPerPage);
+        $pagesTotales = ceil($totalPosts/$articlesPerPage); // Round to the next number
         $currentPage = 1;
 
         if ($this->request->existParameter('page') && $this->request->getParameter('page') > 0)
         {
-            $currentPage = intval($this->request->getParameter('page'));
+            $currentPage = intval($this->request->getParameter('page')); // Get the integer value 
         }
 
         $start = ($currentPage-1)*$articlesPerPage;
@@ -56,10 +60,13 @@ class PostController extends Controller {
         $view->generate(array('post' => $post, 'comments' => $comments));
     }
 
+    // BACK OFFICE
+    
     public function postsAdmin()
     {
         if(isset($_SESSION['username']) && $this->userManager->adminConnection($_SESSION['username']))
         {
+            // Data needed for pagination
             $articlesPerPage = 2;
             $totalPosts = $this->postManager->totalPosts();
             $pagesTotales = ceil($totalPosts/$articlesPerPage);
@@ -90,7 +97,7 @@ class PostController extends Controller {
             $title = $this->request->getParameter('title');
             $content = $this->request->getParameter('content');
             $this->postManager->createPost($title, $content);
-            header('Location: index.php?controller=post&action=postsAdmin');
+            header('Location: index.php?controller=post&amp;action=postsAdmin');
         } 
         else
         {
@@ -107,7 +114,7 @@ class PostController extends Controller {
             $title = $this->request->getParameter('title');
             $content = $this->request->getParameter('content');
             $this->postManager->editPost($postId, $title, $content);
-            header('Location: index.php?controller=post&action=postsAdmin');
+            header('Location: index.php?controller=post&amp;action=postsAdmin');
         }
         else
         {
@@ -121,7 +128,7 @@ class PostController extends Controller {
     {
         $id = $this->request->getParameter('id');
         $delete = $this->postManager->deletePost($id);
-        header('Location: index.php?controller=post&action=postsAdmin');
+        header('Location: index.php?controller=post&amp;action=postsAdmin');
     }
 
 }

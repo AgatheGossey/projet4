@@ -37,14 +37,14 @@
 
                     } ?>
 
+
                 <p div="submitInscriptionButton">
                     <button type="submit button" class="btn btn-success">S'inscrire</button>
                 </p>
 
+                <!-- display the message if successful registration -->
                 <?php if (isset($successfulRegistration)) { ?>
-
                     <p><?= $successfulRegistration ?></p>
-                    
                 <?php } ?>
 
             </form>

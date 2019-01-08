@@ -2,7 +2,7 @@
 
 <h3>Modifier l'article :</h3>
  
- <form id="formAdminPostView" action="index.php?controller=post&action=editPost&amp;id=<?= $id ?>" method="post">
+ <form id="formAdminPostView" action="index.php?controller=post&amp;action=editPost&amp;id=<?= $id ?>" method="post">
 
      <p class ="form-group">
         <label for="title">Titre :</label>

@@ -14,6 +14,7 @@ class InscriptionController extends Controller
         $this->userManager = new UserManager();
     }
 
+    // Default function 
     public function index() 
     {
         $_SESSION['errors'] = [];
@@ -42,7 +43,7 @@ class InscriptionController extends Controller
 
         if (empty($_SESSION['errors']))
         {
-            $pass_hash = password_hash($password, PASSWORD_DEFAULT);
+            $pass_hash = password_hash($password, PASSWORD_DEFAULT); // hash the password to make it unreadable in the database
             $user = $this->userManager->addUser($username, $pass_hash, $email);
             $_SESSION['username'] = $username;
             $_SESSION['connected'] = true;
