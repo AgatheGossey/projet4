@@ -61,7 +61,6 @@ class PostManager extends Manager
     public function deletePost($id) 
     {
         $this->executeARequest('DELETE FROM articles WHERE id = ?', array($id));
-        $this->executeARequest('DELETE FROM comments WHERE post_id = ?', array($id));
     }
 
 }
