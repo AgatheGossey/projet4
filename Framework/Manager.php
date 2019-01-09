@@ -7,7 +7,7 @@ abstract class Manager {
     // Execute a SQL query
     protected function executeARequest($sql, $params = null) 
     {
-        if ($params == null)
+        if ($params === null)
         {
             $result = $this->getDb()->query($sql); // direct execution
         }
@@ -21,7 +21,7 @@ abstract class Manager {
     
     public function getDb() 
     {
-        if ($this->db == null) 
+        if ($this->db === null) 
         {
             $this->db = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
             array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);

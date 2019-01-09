@@ -4,8 +4,8 @@
 
 <?php foreach ($posts as $post) { ?>
     <article class="col-xs-12 col-sm-8 col-md-4 col-lg-5 article">
-        <h1> <?= $post->getTitle(); ?> </h1>
-        <p><?= $post->getContent(); ?>
+        <h1><?= $post->getTitle(); ?></h1>
+        <p><?= $post->getContent(); ?></p>
     </article>
     
     <div id="postActions">

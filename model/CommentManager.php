@@ -6,7 +6,7 @@ class CommentManager extends Manager
 {
     public function getCommentsByReport()
     {
-        $results = $this->executeARequest('SELECT * FROM comments ORDER BY report DESC', array());
+        $results = $this->executeARequest('SELECT * FROM comments WHERE approved = "false" ORDER BY report DESC', array());
         $comments = [];
 
         foreach ($results as $element)
@@ -34,7 +34,7 @@ class CommentManager extends Manager
 
     public function postComment($postId, $author, $comment)
     {
-        $comments = $this->executeARequest('INSERT INTO comments(post_id, author, comment, comment_date, approve) VALUES (?, ?, ?, NOW(), "false")', array($postId, $author, $comment));
+        $comments = $this->executeARequest('INSERT INTO comments(post_id, author, comment, comment_date, approved) VALUES (?, ?, ?, NOW(), "false")', array($postId, $author, $comment));
    
         return $comments;
     }
@@ -65,20 +65,7 @@ class CommentManager extends Manager
 
     public function approveComment($id)
     {
-        // $request = $this->executeARequest('SELECT id, approve FROM comments WHERE id = ?', array($id));
-        // $result = $request->fetch();
-
-        // $comment = new Comment($result);
-
-        // return $comment->getApprove() === 'true';
-
-
-
-        $comment = $this->getComment($id);
-        $approve = $comment->getApprove();
-        $approve === "true";
-
-        return $this->executeARequest('UPDATE comments SET approve = ? WHERE id = ?', array($approve, $id));
+        return $this->executeARequest('UPDATE comments SET approved = "true" WHERE id = ?', array($id));
     }
 
     public function reportComment($id) 

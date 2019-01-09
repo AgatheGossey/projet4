@@ -108,7 +108,7 @@ class CommentController extends Controller
         $commentId = $this->request->getParameter('id');
         $postId = $this->request->getParameter('id');
 
-        if (isset($_SESSION['connected']) && $_SESSION['connected'] == true)
+        if (isset($_SESSION['connected']) && $_SESSION['connected'])
         {
             $this->commentManager->reportComment($commentId);
             header('Location: index.php?');
@@ -123,10 +123,10 @@ class CommentController extends Controller
     {
         $commentId = $this->request->getParameter('id');
 
-        if (isset($_SESSION['connected']) && $_SESSION['connected'] == true)
+        if (isset($_SESSION['connected']) && $_SESSION['connected'])
         {
             $this->commentManager->approveComment($commentId);
-            header('Location : index.php?controller=Comment&action=commentAdmin');
+            header('Location: index.php?controller=Comment&action=commentAdmin');
         }
         else 
         {

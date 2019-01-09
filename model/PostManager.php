@@ -64,9 +64,4 @@ class PostManager extends Manager
         $this->executeARequest('DELETE FROM comments WHERE post_id = ?', array($id));
     }
 
-    public function paginationPost()
-    {
-        $totalArticles =  $this->executeARequest('SELECT id FROM articles', array())->rowCount();
-    }
-
 }

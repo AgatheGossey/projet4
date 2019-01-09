@@ -70,7 +70,8 @@ class User
      */
     public function setPass($pass)
     {
-        if (strlen($pass) < 6) {
+        if (strlen($pass) < 6)
+        {
             $_SESSION['errors']['passError'] = "Le mot de passe doit comporter au minimum 6 caractères.";
         }
 
@@ -90,7 +91,8 @@ class User
      */
     public function setEmail($email)
     {
-        if (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $email)) {
+        if (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $email))
+        {
             $_SESSION['errors']['mailError'] = "L'adresse email n'est pas valide, recommencez !";
         }
 

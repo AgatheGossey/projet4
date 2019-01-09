@@ -16,10 +16,10 @@ class InscriptionController extends Controller
 
     // Default function 
     public function index() 
-    {
-        $_SESSION['errors'] = [];
+    { 
         $view = new View('Inscription');
         $view->generate(array());
+        $_SESSION['errors'] = [];
     }
 
     public function register()
@@ -28,8 +28,6 @@ class InscriptionController extends Controller
         $password = $this->request->getParameter('pass');
         $passCheck = $this->request->getParameter('passCheck');
         $email = $this->request->getParameter('email');
-
-        $temporaryUser = new User(array("username" => $username, "pass" => $password, "email" => $email));
 
         if (!$this->userManager->usernameIsFree($username))
         {
@@ -52,8 +50,7 @@ class InscriptionController extends Controller
         } 
         else
         {
-            $view = new View("Inscription");
-            $view->generate(array());
+            header('Location: index.php?controller=inscription');
         }
     }
 }
