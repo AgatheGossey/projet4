@@ -4,7 +4,6 @@ require_once('model/UserManager.php');
 
 class View 
 {
-
   private $file;
   private $title;
 

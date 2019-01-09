@@ -8,7 +8,6 @@ require_once('view/View.php');
 
 class PostController extends Controller
 {
-
     private $postManager;
     private $commentManager;
     private $userManager;

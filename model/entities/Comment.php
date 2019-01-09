@@ -14,12 +14,12 @@ class Comment
     {
         foreach ($data as $key => $value)
         {  
-            // On récupère le nom du setter correspondant à l'attribut.
+            // We foun the name of the setter corresponding to the attribute.
             $method = 'set'.ucfirst($key);
-            // Si le setter correspondant existe.
+            // If the setter exist
             if (method_exists($this, $method))
             {
-                // On appelle le setter.
+                // We call it 
                 $this->$method($value);
             }
         }
