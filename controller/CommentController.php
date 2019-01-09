@@ -88,14 +88,14 @@ class CommentController extends Controller
         if (isset($_SESSION['username']) && $this->userManager->adminConnection($_SESSION['username']) && $this->request->existParameter("fromAdminPanel"))
         {
             $this->commentManager->deleteComment($commentId);
-            header('Location: index.php?controller=Comment&amp;action=commentAdmin');      
+            header('Location: index.php?controller=Comment&action=commentAdmin');      
         }
         else if (isset($_SESSION['connected']) && $_SESSION['connected'] && $_SESSION['username'] === $comment->getAuthor()
                 OR isset($_SESSION['username']) && $this->userManager->adminConnection($_SESSION['username']))
         {           
             $postId = $comment->getPostId();
             $this->commentManager->deleteComment($commentId);  
-            header('Location: index.php?action=post&amp;id=' . $postId);      
+            header('Location: index.php?action=post&id=' . $postId);      
         } 
         else
         {
@@ -106,12 +106,15 @@ class CommentController extends Controller
     public function reportComment()
     {
         $commentId = $this->request->getParameter('id');
-        $postId = $this->request->getParameter('id');
+        $comment = $this->commentManager->getComment($commentId);
+
+        $postId = $comment->getPostId();
+
 
         if (isset($_SESSION['connected']) && $_SESSION['connected'])
         {
             $this->commentManager->reportComment($commentId);
-            header('Location: index.php?');
+            header('Location: index.php?action=post&id=' . $postId);
         }
         else 
         {

@@ -96,7 +96,7 @@ class PostController extends Controller
             $title = $this->request->getParameter('title');
             $content = $this->request->getParameter('content');
             $this->postManager->createPost($title, $content);
-            header('Location: index.php?controller=post&amp;action=postsAdmin');
+            header('Location: index.php?controller=post&action=postsAdmin');
         } 
         else
         {
@@ -113,7 +113,7 @@ class PostController extends Controller
             $title = $this->request->getParameter('title');
             $content = $this->request->getParameter('content');
             $this->postManager->editPost($postId, $title, $content);
-            header('Location: index.php?controller=post&amp;action=postsAdmin');
+            header('Location: index.php?controller=post&action=postsAdmin');
         }
         else
         {
@@ -127,7 +127,7 @@ class PostController extends Controller
     {
         $id = $this->request->getParameter('id');
         $delete = $this->postManager->deletePost($id);
-        header('Location: index.php?controller=post&amp;action=postsAdmin');
+        header('Location: index.php?controller=post&action=postsAdmin');
     }
 
 }
