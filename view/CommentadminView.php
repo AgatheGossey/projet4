@@ -1,52 +1,23 @@
 <?php $this->title = "Modérer les commentaires"; ?>
 
-<table class="table">
-
-    <thead class="thead-dark">
-
-        <tr>
-            <th scope="col">Auteur</th>
-            <th scope="col">Commentaire</th>
-            <th scope="col">Lien vers l'article</th>
-            <th scope="col">Nombre de signalements</th>
-            <th scope="col">Supprimer</th>
-            <th scope="col">Approuver</th>
-        </tr>
-
-    </thead>
-    
-    <tbody>
-
-        <?php foreach ($comments as $comment) { ?>
-
-            <tr id="lineTable">
-                <td><?= $comment->getAuthor() ?></td>
-                <td><?= $comment->getComment() ?></td>
-                <td>
-                    <a href="index.php?action=post&amp;id=<?= $comment->getPostId() ?>">
-                        <i class="fas fa-link"></i>
-                    </a>
-                </td>
-                <td><?= $comment->getReport() ?></td>
-                <td>
-                    <a href= "index.php?controller=Comment&amp;action=deleteComment&amp;fromAdminPanel=true&amp;id=<?= $comment->getId() ?>">
-                        <i class="fa fa-trash"></i>
-                    </a>
-                </td>
-                <td>
-                    <a href= "index.php?controller=Comment&amp;action=approveComment&amp;fromAdminPanel=true&amp;id=<?= $comment->getId() ?>">
-                        <i class="fas fa-check"></i>
-                    </a>
-                </td>
-            </tr>
-
-        <?php } ?>
-
-    </tbody>
-
-</table>
-
-    
+<div id="commentsCards">
+    <?php foreach ($comments as $comment) { ?>
+        <div class="card">
+            <div class="card-body">
+                <p><span id="elementInBold">Auteur :</span> <?= $comment->getAuthor() ?></p>
+                <p><span id="elementInBold">Commentaire :</span> <?= $comment->getComment() ?></p>
+                <p><span id="elementInBold">Nombre de signalements :</span> <?= $comment->getReport() ?></p>
+                <p><a href="index.php?action=post&amp;id=<?= $comment->getPostId() ?>">Lien vers l'article</a></p>
+                <a href="index.php?controller=Comment&amp;action=deleteComment&amp;fromAdminPanel=true&amp;id=<?= $comment->getId() ?>">
+                    <button type="button" class="btn btn-danger">Supprimer</button>
+                </a>
+                <a href="index.php?controller=Comment&amp;action=approveComment&amp;fromAdminPanel=true&amp;id=<?= $comment->getId() ?>">
+                    <button type="button" class="btn btn-success">Approuver</button>
+                </a>
+            </div>
+        </div>
+    <?php } ?>
+</div>
 
 
 

@@ -2,7 +2,7 @@
 
 require_once('Framework/Controller.php');
 require_once('model/UserManager.php');
-require_once('view/View.php');
+require_once('Framework/View.php');
 
 class ConnectionController extends Controller
 {

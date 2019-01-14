@@ -1,6 +1,6 @@
 <?php $this->title = "S'inscrire"; ?>
 
-<h2 id="h2InscriptionView">Inscrivez-vous afin d'interagir avec les lecteurs et Jean Fortroche !</h2>
+<h2>Inscrivez-vous afin d'interagir avec les lecteurs et Jean Fortroche !</h2>
 
 <div class="container-fluid">
     <div class="container">
@@ -38,7 +38,7 @@
                     } ?>
 
 
-                <p div="submitInscriptionButton">
+                <p class ="form-group" id="submitInscriptionButton">
                     <button type="submit button" class="btn btn-success">S'inscrire</button>
                 </p>
 

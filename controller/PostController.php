@@ -4,7 +4,7 @@ require_once('Framework/Controller.php');
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 require_once('model/UserManager.php');
-require_once('view/View.php');
+require_once('Framework/View.php');
 
 class PostController extends Controller
 {
@@ -26,11 +26,9 @@ class PostController extends Controller
         $view->generate(array('posts' => $posts));
     }
 
-    // FRONT OFFICE
-
     public function posts()
     {
-        // Data needed for pagination
+        // PAGINATION
         $articlesPerPage = 3;
         $totalPosts = $this->postManager->totalPosts();
         $pagesTotales = ceil($totalPosts/$articlesPerPage); // Round to the next number
@@ -43,8 +41,10 @@ class PostController extends Controller
 
         $start = ($currentPage-1)*$articlesPerPage;
 
+        // GET POSTS
         $posts = $this->postManager->getPosts($start, $articlesPerPage);
 
+        // GENERATE VIEW
         $view = new View('Posts');
         $view->generate(array('posts' => $posts, 'pageTotales' => $pagesTotales, 'currentPage' => $currentPage));
     }
@@ -58,8 +58,6 @@ class PostController extends Controller
         $view = new View('Post');
         $view->generate(array('post' => $post, 'comments' => $comments));
     }
-
-    // BACK OFFICE
     
     public function postsAdmin()
     {

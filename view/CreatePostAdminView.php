@@ -1,6 +1,6 @@
 <?php $this->title = 'Créer un nouvel article'; ?>
 
-<h3>Créer un nouvel article :</h3>
+<h2>Créer un nouvel article :</h2>
 
 <form id="formAdminPostView" action="index.php?controller=post&amp;action=createPost" method="POST">
 
@@ -10,11 +10,11 @@
     </p>
 
     <p> 
-        <textarea class="post" name="content" cold="50" rows="30" id="content"></textarea>
+        <textarea class="post" name="content" rows="30" id="content"></textarea>
     </p>
 
     <p>
-        <button id="submitPost" type="submit button" class="btn btn-success">Publier</button>
+        <button id="submitPost" type="submit" class="btn btn-success">Publier</button>
     </p>
     
     <p id="redirectionLink">

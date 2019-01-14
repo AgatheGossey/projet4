@@ -1,6 +1,6 @@
 <?php $this->title = 'Modifier un article'; ?>
 
-<h3>Modifier l'article :</h3>
+<h2>Modifier l'article :</h2>
  
  <form id="formAdminPostView" action="index.php?controller=post&amp;action=editPost&amp;id=<?= $id ?>" method="post">
 

@@ -20,7 +20,7 @@ class CommentManager extends Manager
 
     public function getCommentsByPost($postId)
     {
-        $results = $this->executeARequest('SELECT * FROM comments WHERE post_id = ? ORDER BY ID DESC LIMIT 0, 10', array($postId));
+        $results = $this->executeARequest('SELECT * FROM comments WHERE post_id = ? ORDER BY ID DESC', array($postId));
         $comments = [];
 
         foreach ($results as $element)

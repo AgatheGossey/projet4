@@ -1,13 +1,13 @@
 <?php $this->title = 'Les commentaires'; ?>
 
 
-<article class="col-xs-12 col-sm-8 col-md-4 col-lg-5 article">
+<article class="col-xs-12 col-sm-12 col-md-10 col-lg-5 article">
     <h1><?= $post->getTitle() ?></h1>
-    <p><?= $post->getContent() ?></p>
+    <div><?= $post->getContent() ?></div>
     <p id="redirectionLink"><a href="index.php?action=posts">Retour à la liste des chapitres</a></p>
 </article>
 
-<article class="col-xs-12 col-sm-8 col-md-4 col-lg-5 article">
+<article class="col-xs-12 col-sm-12 col-md-10 col-lg-5 article">
 
     <h1 id="h1PostView">Commentaires :</h1>
 
@@ -36,10 +36,10 @@
 
      <?php if(isset($_SESSION['connected']) && $_SESSION['connected']) { ?>
 
-        <h3>Poster un commentaire :</h3>
-        <p> Votre pseudo : <span id="getAuthor"><?= $_SESSION['username']?></span></p>
+        <h2>Poster un commentaire :</h2>
+        <p> Votre pseudo : <span id="elementInBold"><?= $_SESSION['username']?></span></p>
 
-        <form id="formPostView" action="index.php?controller=Comment&amp;action=addComment&amp;id=<?= $post->getId() ?>" method="POST">                 
+        <form action="index.php?controller=Comment&amp;action=addComment&amp;id=<?= $post->getId() ?>" method="POST">                 
             <p>
                 <label for="comment"></label>
                 <textarea type="text" class="form-control" id="comment" name="comment" required></textarea>
@@ -50,7 +50,7 @@
         </form>
 
     <?php }  else { ?>
-        <p id="linkToLogIn"><a href= "index.php?controller=connection" id="logIn">Connectez-vous</a> pour laissez un commentaire</p>
+        <p id="linkToLogIn"><a href= "index.php?controller=connection" id="logIn">Connectez-vous</a> pour laisser un commentaire</p>
     <?php } ?>
 
 </article>

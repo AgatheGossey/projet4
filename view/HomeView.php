@@ -1,8 +1,13 @@
-<?php $this->title = 'Bienvenue !'; ?>
+<?php $this->title = "Jean Forteroche - Billet simple pour l'Alaska"; ?>
 
 <div id="homeView">
 
+<div id="imgContainer">
     <img id="img" src="./public/images/img.jpg" alt="Couverture du livre - Billet simple pour l'Alaska"/>
+    <div id="titleContainer">
+        <h1 id="textImg">Billet simple pour l'Alaska</h1>
+    </div>
+</div>
 
     <div class="container-fluid" id="homeViewChapters">
         <div class="container">

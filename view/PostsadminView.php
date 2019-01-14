@@ -1,9 +1,9 @@
 <?php $this->title = "Gérer les articles"; ?>
 
-  <a role="button" class="btn btn-success" href="index.php?controller=post&amp;action=createPost"><i class="far fa-edit"></i></a></button>
+  <a role="button" class="btn btn-success" href="index.php?controller=post&amp;action=createPost"><i class="far fa-edit"></i></br>Ecrire un article</a></button>
 
 <?php foreach ($posts as $post) { ?>
-    <article class="col-xs-12 col-sm-8 col-md-4 col-lg-5 article">
+    <article class="col-xs-12 col-sm-12 col-md-10 col-lg-5 article">
         <h1><?= $post->getTitle(); ?></h1>
         <p><?= $post->getContent(); ?></p>
     </article>

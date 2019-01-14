@@ -6,7 +6,7 @@ class PostManager extends Manager
 {
     public function getPosts($start = 0, $articlesPerPage = 2)
     {
-        $results = $this->executeARequest('SELECT id, title, content FROM articles LIMIT ' .$articlesPerPage. ' OFFSET ' .$start);
+        $results = $this->executeARequest('SELECT id, title, content FROM articles ORDER BY id DESC LIMIT ' .$articlesPerPage. ' OFFSET ' .$start);
 
         $posts = [];
 

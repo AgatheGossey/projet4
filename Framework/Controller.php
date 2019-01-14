@@ -1,7 +1,7 @@
 <?php 
 
 require_once('Request.php');
-require_once('view/View.php');
+require_once('./Framework/View.php');
 
 abstract class Controller
 {
@@ -32,14 +32,4 @@ abstract class Controller
 
     // The default action
     public abstract function index();
-
-    // Generate the associated view
-    protected function generateView($dataView = array())
-    {
-        $classController = get_class($this);
-        $controller = str_replace("Controller", "", $classController);
-        
-        $view = new View($this->action, $controller);
-        $view->generate($dataView);
-    }
 }

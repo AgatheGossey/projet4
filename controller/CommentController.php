@@ -4,7 +4,7 @@ require_once('Framework/Controller.php');
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 require_once('model/UserManager.php');
-require_once('view/View.php');
+require_once('Framework/View.php');
 
 class CommentController extends Controller 
 {
@@ -44,12 +44,12 @@ class CommentController extends Controller
         if(isset($_SESSION['username']) && $this->userManager->adminConnection($_SESSION['username']))
         {
             $comments = $this->commentManager->getCommentsByReport();
-            $view = new View('Commentadmin');
+            $view = new View('CommentAdmin');
             $view->generate(array('comments' => $comments));
         }
         else 
         {
-            header('Location: index.php?');
+            header('Location: index.php');
         }   
     }
 

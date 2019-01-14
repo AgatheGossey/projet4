@@ -2,7 +2,7 @@
 
 require_once('Framework/Controller.php');
 require_once('model/UserManager.php');
-require_once('view/View.php');
+require_once('Framework/View.php');
 
 class InscriptionController extends Controller 
 {
@@ -33,10 +33,20 @@ class InscriptionController extends Controller
         {
             $_SESSION['errors']['usernameError'] = "Pseudo déjà utilisé, veuillez en choisir un autre.";
         }
+
+        if (strlen($password) < 6)
+        {
+            $_SESSION['errors']['passError'] = "Le mot de passe doit comporter au minimum 6 caractères.";
+        }
         
         if (isset($password) && isset($passCheck) && $password !== $passCheck )
         {
             $_SESSION['errors']['passCheckError'] = "Les mots de passe ne sont pas identiques.";
+        }
+
+        if (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $email))
+        {
+            $_SESSION['errors']['mailError'] = "L'adresse email n'est pas valide, recommencez !";
         }
 
         if (empty($_SESSION['errors']))

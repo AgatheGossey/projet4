@@ -1,7 +1,7 @@
 <?php $this->title = 'Chapitres'; ?>
 
 <?php foreach ($posts as $post) { ?>
-    <article class="col-xs-12 col-sm-8 col-md-4 col-lg-5 article">
+    <article class="col-xs-12 col-md-10 col-lg-5 article">
         <h1> <?= $post->getTitle(); ?> </h1>
         <p><?= substr($post->getContent(), 0, 350)  . " ...";?> <em><a href="index.php?action=post&amp;id=<?= $post->getId() ?>">Lire le chapitre</a></em></p>
     </article>

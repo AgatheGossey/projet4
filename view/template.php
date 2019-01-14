@@ -11,13 +11,11 @@
 
     <!-- FONT -->
     <link href="https://fonts.googleapis.com/css?family=Karma" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet">   
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
     <!-- STYLES -->
-    <link href="./public/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./public/css/styles-small.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">    <link rel="stylesheet" type="text/css" href="./public/css/styles-small.css">
     <link rel="stylesheet" type="text/css" href="./public/css/styles-medium.css">
     <link rel="stylesheet" type="text/css" href="./public/css/styles-large.css">
 
@@ -49,54 +47,37 @@
 
     <!-- NAVIGATION -->
 
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <ul class="navbar-nav mr-auto ml-5">
 
-      <div class="container">
+        <?php if(isset($_SESSION['connected']) && $_SESSION['connected'] === true) { ?>
+          <li class="nav-item"><a class="nav-link"><?=ucfirst($_SESSION['username']) ?></a></li>
+        <?php }?>
 
-        <!-- Design for smartphone -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-    
-        <!-- Menu -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.php?action=posts">Chapitres</a></li>
 
-          <ul class="nav navbar-nav">
+        <?php if(isset($_SESSION['connected']) && $_SESSION['connected'] === true) { ?>
 
-            <?php if(isset($_SESSION['connected']) && $_SESSION['connected'] === true) { ?>
-              <li><a><?=ucfirst($_SESSION['username']) ?></a></li>
-            <?php }?>
+          <li class="nav-item"><a class="nav-link" href="index.php?controller=deconnection">Se déconnecter</a></li>
+          <?php if(isset($_SESSION['username']) && $isAdmin) { ?>
+            <li class="nav-item"><a class="nav-link" href="index.php?controller=post&action=postsAdmin">Gérer les articles</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.php?controller=comment&action=commentAdmin">Modérer les commentaires</a></li>
+          <?php }
 
-            <li><a href="index.php">Accueil</a></li>
-            <li><a href="index.php?action=posts">Chapitres</a></li>
+        } else { ?> 
 
-            <?php if(isset($_SESSION['connected']) && $_SESSION['connected'] === true) { ?>
-
-              <li><a href="index.php?controller=deconnection">Se déconnecter</a></li>
-              <?php if(isset($_SESSION['username']) && $isAdmin) { ?>
-                <li><a href="index.php?controller=post&amp;action=postsAdmin">Gérer les articles</a></li>
-                <li><a href="index.php?controller=Comment&amp;action=commentAdmin">Modérer les commentaires</a></li>
-              <?php }
-
-            } else { ?> 
-
-              <li><a href="index.php?controller=connection">Connexion</a></li>
-              <li><a href="index.php?controller=inscription">Inscription</a></li>
-
-            <?php } ?>
-
-          </ul>
-
-          <p id="jeanForteroche">Jean Forteroche</p>
-
-        </div>
-
-      </div>
-
+          <li class="nav-item"><a class="nav-link" href="index.php?controller=connection">Connexion</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php?controller=inscription">Inscription</a></li>
+        
+        <?php } ?>
+      </ul>
+      <div class="navbar-brand">Jean Forteroche</div>
+    </div>
     </nav>
 
     <!-- CONTENT -->
@@ -108,13 +89,14 @@
         <div class="footerElement">© 2018 Copyright</div>
     </footer>
     
+    <!-- SCRIPT -->
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea.post' });</script> 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> 
+          
   </body>
-
-  <!-- SCRIPT -->
-  <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-  <script>tinymce.init({ selector:'textarea.post' });</script> 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>  
 
 </html>
       

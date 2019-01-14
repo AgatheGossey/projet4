@@ -1,44 +1,38 @@
 /* TEMPLATE */
 
 body {
-  padding-top: 5em;
   font-family: 'Karma', serif;
-  background-color: white;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  margin-top: 3.5em;
 }
 
 .navbar {
   background-color: #052611;
-  border: none;
-  color: white;
-  font-size: 1.1em;
-  padding: 10px 15px;
 }
 
- .navbar-inverse .navbar-nav > li > a {
+.navbar-dark .navbar-nav .nav-link {
   color: white;
-  font-size: 1.1em;
-} 
+}
 
-.navbar-inverse .navbar-nav > li:hover  {
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+  color: white;
   font-weight: bold;
 }
 
-#jeanForteroche {
+.navbar-brand {
   display: none;
 }
 
 .page-footer {
-  width: 100%;
-  margin-top: auto;
   display: flex;
   flex-direction: row;
+  width: 100%;
+  margin-top: auto;
   padding: 1em 0;
   background-color: #919191;
   text-align: center;
-
 }
 
 footer, footer > a {
@@ -52,44 +46,56 @@ footer, footer > a {
 /* GLOBAL */
 
 article {
+  margin: 1em auto 3em auto;
   text-align: justify;
   line-height: 2;
   font-size: 1.2em;
 }
 
 h1 {
+  margin: 1em auto;
   padding: 0.2em;
   border-bottom: 1px dashed grey;
   text-align: center;
   font-family: 'Dancing Script', cursive;
   font-weight: bold;
-  margin: 1em auto;
+}
+
+h2 {
+  margin: 3em auto 2em auto;
+  font-size: 1.5em;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+#elementInBold {
+  font-weight: bold;
+}
+
+#paginationNav {
+  margin: 1em auto 0 auto;
+}
+
+#redirectionLink {
+  text-align: right;
 }
 
 /* HOME VIEW */
 
-#img {
+#imgContainer {
   position: relative;
-  width: 100%;
-  margin: auto;
 }
 
-#homeView {
-  background-image: url("fond.jpg");
+#img {
+  width: 100%;
+}
+
+#titleContainer {
+  display: none;
 }
 
 #homeViewChapters {
   margin: 3em auto;
-}
-
-/* POSTS VIEW */
-
-.article {
-  margin: 1em auto 3em auto;
-}
-
-#paginationNav {
-  margin: auto;
 }
 
 /* POST VIEW */
@@ -98,17 +104,9 @@ h1 {
   border: none;
 }
 
-#redirectionLink {
-  text-align: right;
-}
-
 #postingComments {
-  border: 1px solid #e2e2e2;
   padding: 1em 2em;
-}
-
-#getAuthor {
-  font-weight: bold;
+  border: 1px solid #e2e2e2;
 }
 
 #commentActions {
@@ -125,17 +123,7 @@ h1 {
   font-weight: bold;
 }
 
-h3 {
-  margin: 4em auto 2em auto;
-  font-size: 1.5em;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-#comment {
-  width: 200%;
-}
+/* Link that appears if the visitor is not logged in */
 
 #linkToLogIn {
   margin: 2em auto;
@@ -158,24 +146,9 @@ h3 {
 
 /* INSCRIPTION VIEW */
 
-#h2InscriptionView {
-  margin-top: 3em;
-  text-align: center;
-  font-size: 1.5em;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
-
 #formInscriptionView, #formConnectionView {
   text-align: center;
   margin: 3em auto;
-  max-width: 70%;
-  font-size: 1.2em;
-}
-
-#submitInscriptionButton {
-  margin-top: 0.8em;
-  font-weight: bold;
   font-size: 1.2em;
 }
 
@@ -184,7 +157,6 @@ h3 {
 .far.fa-edit {
   font-size: 4em;
   color: white;
-  width: 10em;
 }
 
 #postActions {
@@ -205,7 +177,7 @@ h3 {
 
 #formAdminPostView {
   margin:auto;
-  width: 200%;
+  width: 90%;
 }
 
 #submitPost {
@@ -214,12 +186,9 @@ h3 {
  font-weight: bold;
 }
 
+
 /* COMMENTS ADMIN VIEW */
 
-.table {
-  font-size: 1.2em;
-}
-
-#lineTable:hover {
-  background-color: #e6ebf4;
+button a {
+  color: inherit;
 }

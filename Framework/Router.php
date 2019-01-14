@@ -2,7 +2,7 @@
 
 require_once('Request.php');
 require_once('Controller.php');
-require_once('view/View.php');
+require_once('Framework/View.php');
 
 class Router
 {
@@ -50,7 +50,7 @@ class Router
     // Determine the action to execute based on the request received
     private function createAction(Request $request) 
     {
-        $action = "index"; // action par défaut 
+        $action = "index"; // Default action
         if ($request->existParameter('action')) 
         {
             $action = $request->getParameter('action');

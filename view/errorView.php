@@ -1,4 +1,14 @@
 <?php $this->title = "Message d'erreur"; ?>
 
-<p>Une erreur est survenue : <?= $msgError ?></p>
+<div class="container-fluid">
+
+    <div class="container">
+
+        <h2>Une erreur est survenue : <?= $msgError ?></h2>
+
+        <p id="redirectionLink"><a href="index.php?action=posts">Retour à la liste des chapitres</a></p>
+    
+    </div>
+
+</div>
 
