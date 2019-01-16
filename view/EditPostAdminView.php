@@ -6,7 +6,7 @@
 
      <p class ="form-group">
         <label for="title">Titre :</label>
-        <input type="text" class="form-control" name="title" value="<?= $title ?>"></input>
+        <input type="text" class="form-control" name="title" value="<?= $title ?>" />
     </p>
 
     <p class ="form-group">

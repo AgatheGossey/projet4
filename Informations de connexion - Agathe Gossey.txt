@@ -1,0 +1,4 @@
+Pseudos et mots de passe associés afin de pouvoir tester le blog :
+
+Compte Admin : admin, 123456
+Compte utilisateur : visitieur, 123456
